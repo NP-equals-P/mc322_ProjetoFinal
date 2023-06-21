@@ -56,6 +56,6 @@ public class Sala {
         Atualiza o preço da sala com base nas características
          */
     public double calcularPreco() {
-
+        return 0.0;
     }
 }

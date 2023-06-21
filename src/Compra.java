@@ -1,6 +1,7 @@
+import java.io.*;
 import java.util.*;
 
-public class Compra {
+public class Compra implements Imprimivel{
     /*
     Registra os itens que serão comprados por um cliente
      */
@@ -44,33 +45,63 @@ public class Compra {
         this.total = total;
     }
 
-    /*
-    Recalcula o valor total da compra
-     */
-    public boolean atualizarTotal() {
+//    /*
+//    Recalcula o valor total da compra
+//     */
+//    public boolean atualizarTotal() {
+//
+//    }
+//
+//    /*
+//    Cria um ingresso
+//     */
+//    public boolean criarIngresso() {
+//
+//    }
+//
+//    /*
+//    Adiciona um ingresso, já criado, na lista de ingressos da compra
+//     */
+//    public boolean adicionarIngresso() {
+//
+//    }
+//
+//    /*
+//    Adiciona um ingresso na lista de consumiveis da compra
+//     */
+//    public boolean adicionarConsumivel() {
+//
+//    }
 
-    }
+    public void imprimir() {
+        String registroCompra = Integer.toString(this.registroCompra);
+        String nomeArquivo = "Compra"+registroCompra+".txt";
 
-    /*
-    Cria um ingresso
-     */
-    public boolean criarIngresso() {
+        try {
+            BufferedWriter bufferEscrita = new BufferedWriter(new FileWriter(nomeArquivo));
+            // Escrevendo o recibo da compra
+            bufferEscrita.write("Código da compra: "+Integer.toString(getRegistroCompra())+"\n");
+            bufferEscrita.write("#############################\n");
+            bufferEscrita.write("Quantidade de ingressos comprados: "+this.listaIngressos.size()+"\n");
+            for (Ingresso i : listaIngressos) {
+                bufferEscrita.write("Horário: \n");
+                bufferEscrita.write("Assento: \n");
+                bufferEscrita.write("Filme: \n");
+                bufferEscrita.write("Preço: \n");
+                bufferEscrita.write("----------------------------------\n");
+            }
+            bufferEscrita.write("#############################\n");
+            bufferEscrita.write("Consumíveis comprados:\n");
+            for (Consumo i : listaConsumo) {
+                bufferEscrita.write("Horário: \n");
+                bufferEscrita.write("Assento: \n");
+                bufferEscrita.write("Filme: \n");
+            }
 
-    }
-
-    /*
-    Adiciona um ingresso, já criado, na lista de ingressos da compra
-     */
-    public boolean adicionarIngresso() {
-
-    }
-
-    /*
-    Adiciona um ingresso na lista de consumiveis da compra
-     */
-    public boolean adicionarConsumivel() {
-
+            bufferEscrita.close();
+            System.out.println("Arquivo gravado com sucesso!");
+        } catch (IOException e) {
+            System.out.println("Ocorreu um erro ao gravar o arquivo: " + e.getMessage());
+        }
     }
 }
-
-/home/math/IdeaProjects/Kinoplex2_ou_nome_melhor/src/Funcionario.java

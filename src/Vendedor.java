@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.*;
 
 public class Vendedor extends Funcionario{
@@ -8,8 +9,8 @@ public class Vendedor extends Funcionario{
 
     private List<Compra> listaCompras;
 
-    Funcionario() {
-
+    public Vendedor(String nome, String CPF, LocalDate dataNascimento, double salario) {
+        super(nome, CPF, dataNascimento, salario);
     }
 
     public List<Compra> getListaCompras() {

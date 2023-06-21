@@ -15,7 +15,7 @@ public class Sessao {
         this.horario = horario;
         this.sala = sala;
         this.filme = filme;
-        this.lugaresLivres = sala.getNumeroAssentos(); // inicializa com os assentos da sala
+//        this.lugaresLivres = sala.getNumeroAssentos(); // inicializa com os assentos da sala
     }
 
     public LocalDate getHorario() {
