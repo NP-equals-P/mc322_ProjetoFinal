@@ -1,20 +1,45 @@
 public class Sala {
-    private int numeroSala;
+    private final int id;
+    private double preco;
+    private int numAssentos;
+    private boolean ehVIP;
     private boolean eh3D;
-    private int numeroAssentos;
 
-    public Sala(int numeroSala, boolean eh3D, int numeroAssentos) {
-        this.numeroSala = numeroSala;
+
+    public Sala(int id, double preco, int numAssentos, boolean eh3D, boolean ehVIP) {
+        this.id = id;
+        this.preco = preco;
+        this.numAssentos = numAssentos;
         this.eh3D = eh3D;
-        this.numeroAssentos = numeroAssentos;
+        this.ehVIP = ehVIP;
     }
 
-    public int getNumeroSala() {
-        return numeroSala;
+    public int getId() {
+        return id;
     }
 
-    public void setNumeroSala(int numeroSala) {
-        this.numeroSala = numeroSala;
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public int getNumAssentos() {
+        return numAssentos;
+    }
+
+    public void setNumAssentos(int numAssentos) {
+        this.numAssentos = numAssentos;
+    }
+
+    public boolean isEhVIP() {
+        return ehVIP;
+    }
+
+    public void setEhVIP(boolean ehVIP) {
+        this.ehVIP = ehVIP;
     }
 
     public boolean isEh3D() {
@@ -25,11 +50,12 @@ public class Sala {
         this.eh3D = eh3D;
     }
 
-    public int getNumeroAssentos() {
-        return numeroAssentos;
-    }
 
-    public void setNumeroAssentos(int numeroAssentos) {
-        this.numeroAssentos = numeroAssentos;
+
+    /*
+        Atualiza o preço da sala com base nas características
+         */
+    public double calcularPreco() {
+
     }
 }
