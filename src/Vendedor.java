@@ -8,8 +8,9 @@ public class Vendedor extends Funcionario{
 
     private List<Compra> listaCompras;
 
-    Funcionario() {
-
+    public Vendedor(String nome, String cpf, double salario) {
+        super(nome, cpf, salario);
+        this.listaCompras = new ArrayList<Compra>();
     }
 
     public List<Compra> getListaCompras() {
@@ -19,4 +20,13 @@ public class Vendedor extends Funcionario{
     public void setListaCompras(List<Compra> listaCompras) {
         this.listaCompras = listaCompras;
     }
+
+    /*
+    Registra os itens que serão comprados por um cliente
+     */
+    public void realizarCompra() {
+        Compra compra = new Compra();
+        listaCompras.add(compra);
+    }
+
 }

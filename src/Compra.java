@@ -6,14 +6,16 @@ public class Compra {
      */
     private final int registroCompra;
     private List<Ingresso> listaIngressos;
-    private List<Consumo> listaConsumo;
+    private List<Consumivel> listaConsumo;
     private double total;
-    private static int cont = 0;
+    private static int cont = 1;
 
     public Compra() {
-        this.registroCompra = cont++;
-        this.listaConsumo = new ArrayList<>();
-        this.listaIngressos = new ArrayList<>();
+        this.registroCompra = cont;
+        cont++;
+        this.listaConsumo = new ArrayList<Consumivel>();
+        this.listaIngressos = new ArrayList<Ingresso>();
+        this.total = 0;
     }
 
     public int getRegistroCompra() {
@@ -28,11 +30,11 @@ public class Compra {
         this.listaIngressos = listaIngressos;
     }
 
-    public List<Consumo> getListaConsumo() {
+    public List<Consumivel> getListaConsumo() {
         return listaConsumo;
     }
 
-    public void setListaConsumo(List<Consumo> listaConsumo) {
+    public void setListaConsumo(List<Consumivel> listaConsumo) {
         this.listaConsumo = listaConsumo;
     }
 
@@ -40,37 +42,98 @@ public class Compra {
         return total;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
-    }
+    // public void setTotal(double total) {
+    //     this.total = total;
+    // }
 
     /*
-    Recalcula o valor total da compra
+    Calcula o valor total da compra
      */
-    public boolean atualizarTotal() {
-
+    public void atualizarTotal() {
+        for (Ingresso i : listaIngressos) {
+            total += i.getPreco();
+        }
+        for (Consumivel c : listaConsumo) {
+            total += c.getPreco();
+        }
     }
 
     /*
     Cria um ingresso
      */
-    public boolean criarIngresso() {
-
+    public void criarIngresso(int assento, Sessao sessao, boolean ehInteiro) {
+        boolean condicao = true;
+        condicao = verificarAssento(assento, sessao);
+        if (condicao == false) {
+            System.out.println("Esse assento já está ocupado.");
+        }
+        else {
+            Ingresso ing = new Ingresso(assento, sessao, ehInteiro);
+            adicionarIngresso(ing);
+        }
     }
 
     /*
     Adiciona um ingresso, já criado, na lista de ingressos da compra
      */
-    public boolean adicionarIngresso() {
-
+    public void adicionarIngresso(Ingresso ingresso) {
+        listaIngressos.add(ingresso);
     }
 
     /*
-    Adiciona um ingresso na lista de consumiveis da compra
+    Cria um consumivel
      */
-    public boolean adicionarConsumivel() {
-
+    public void criarConsumivel(String nome, double preco) {
+        Consumivel c = new Consumivel(nome, preco);
+        adicionarConsumivel(c);
     }
+
+    /*
+    Adiciona um consumivel na lista de consumiveis da compra
+     */
+    public void adicionarConsumivel(Consumivel consumivel) {
+        listaConsumo.add(consumivel);
+    }
+
+    /*
+    Remove um ingresso da lista de ingressos com base no seu id
+     */
+    public boolean removerIngresso(int id) {
+        Iterator<Ingresso> i = listaIngressos.iterator();
+        while(i.hasNext()) {
+            Ingresso ing = i.next();
+            if (ing.getId() == id) {
+                i.remove();
+                return true;
+            }
+        }
+        return false; // nao encontrou alguem com o nome dado para ser retirado
+    }
+
+    /*
+    Remove um consumivel da lista de consumiveis com base no seu nome(como nao importa qual
+    consumivel voce quer tirar dede que ele seja do mesmo tipo, nao precisa de um id, apenas do nome)
+     */
+    public boolean removerConsumivel(String nome) {
+        Iterator<Consumivel> i = listaConsumo.iterator();
+        while(i.hasNext()) {
+            Consumivel consumivel = i.next();
+            if (consumivel.getNome().equals(nome)) {
+                i.remove();
+                return true;
+            }
+        }
+        return false; // nao encontrou alguem com o nome dado para ser retirado
+    }
+
+    public boolean verificarAssento(int assento, Sessao sessao) {
+        boolean condicao = true;
+        List<Boolean> lista = sessao.getListaAssentos();
+        if (lista.get(assento) == false) {
+            condicao = false;
+        }
+        return condicao;
+    }  
+
 }
 
-/home/math/IdeaProjects/Kinoplex2_ou_nome_melhor/src/Funcionario.java

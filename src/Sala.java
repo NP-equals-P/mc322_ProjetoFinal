@@ -6,9 +6,9 @@ public class Sala {
     private boolean eh3D;
 
 
-    public Sala(int id, double preco, int numAssentos, boolean eh3D, boolean ehVIP) {
+    public Sala(int id, int numAssentos, boolean eh3D, boolean ehVIP) {
         this.id = id;
-        this.preco = preco;
+        this.preco = 30;
         this.numAssentos = numAssentos;
         this.eh3D = eh3D;
         this.ehVIP = ehVIP;
@@ -53,9 +53,14 @@ public class Sala {
 
 
     /*
-        Atualiza o preço da sala com base nas características
-         */
-    public double calcularPreco() {
-
+    Atualiza o preço da sala com base nas características
+    */
+    public void calcularPreco() {
+        if (eh3D == true) {
+            preco = (preco * 1.5);
+        }
+        if (ehVIP == true) {
+            preco = (preco * 2);
+        }
     }
 }
