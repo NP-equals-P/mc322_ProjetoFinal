@@ -22,35 +22,17 @@ public class Sala {
         return preco;
     }
 
-    public void setPreco(double preco) {
-        this.preco = preco;
-    }
-
     public int getNumAssentos() {
         return numAssentos;
     }
 
-    public void setNumAssentos(int numAssentos) {
-        this.numAssentos = numAssentos;
-    }
-
-    public boolean isEhVIP() {
+    public boolean getEhVIP() {
         return ehVIP;
     }
 
-    public void setEhVIP(boolean ehVIP) {
-        this.ehVIP = ehVIP;
-    }
-
-    public boolean isEh3D() {
+    public boolean getEh3D() {
         return eh3D;
     }
-
-    public void setEh3D(boolean eh3D) {
-        this.eh3D = eh3D;
-    }
-
-
 
     /*
     Atualiza o preço da sala com base nas características

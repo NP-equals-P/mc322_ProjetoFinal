@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.util.*;
 
 public class Vendedor extends Funcionario{
@@ -8,7 +7,10 @@ public class Vendedor extends Funcionario{
      */
     private List<Compra> listaCompras;
 
-    public Vendedor(String unidade, String nome, String cpf, double salario) {
+    /*
+    Construtor
+     */
+    public Vendedor(Unidade unidade, String nome, String cpf, double salario) {
         super(unidade, nome, cpf, salario);
         this.listaCompras = new ArrayList<Compra>();
     }
@@ -17,16 +19,28 @@ public class Vendedor extends Funcionario{
         return listaCompras;
     }
 
-    public void setListaCompras(List<Compra> listaCompras) {
-        this.listaCompras = listaCompras;
-    }
-
     /*
     Registra os itens que serão comprados por um cliente
      */
-    public void realizarCompra() {
+    public Compra realizarCompra() {
         Compra compra = new Compra();
+        return compra;
+    }
+
+    /*
+    Adiciona uma compra completa na lista de compras e muda o salario do vendedor com base nessa compra.
+     */
+    public void confirmarCompra(Compra compra) {
         listaCompras.add(compra);
+        atualizarSalario();
+    }
+
+    /*
+    Atualiza o salario do vendedor com base no calculo estipulado pela unidade.
+     */
+    public void atualizarSalario() {
+        Unidade unidade = getUnidade();
+        unidade.calcSalario(this);
     }
 
 }

@@ -9,35 +9,29 @@ public class Sessao {
     /*
     Contém as informações de um horário de sessão específico
      */
-    private String horario; //talvez mude pra string ou algo assim dps
+    private String horario;
     private Sala sala;
     private String filme;
     private List<Boolean> listaAssentos; // lista de true ou false que representa se o assento ja foi ocupado ou
-    // nao, sendo true um assento livre.
+                                        // nao, sendo true um assento livre.
+    private String cartaz;
 
-    public Sessao(String horario, Sala sala, String filme) {
+    public Sessao(String horario, Sala sala, String filme, String cartaz) {
         this.horario = horario;
         this.sala = sala;
         this.filme = filme;
         int numAssentos = sala.getNumAssentos();
         this.listaAssentos = new ArrayList<Boolean>(numAssentos); // cria uma lista de booleano do tamanho dos assentos da sala.
         listaAssentos.addAll(Collections.nCopies(numAssentos, Boolean.TRUE));   // coloca todos os elementos da lista como true.
+        this.cartaz = cartaz;
     }
 
     public String getHorario() {
         return horario;
     }
 
-    public void setHorario(String horario) {
-        this.horario = horario;
-    }
-
     public Sala getSala() {
         return sala;
-    }
-
-    public void setSala(Sala sala) {
-        this.sala = sala;
     }
 
     public String getFilme() {
@@ -83,5 +77,12 @@ public class Sessao {
         } else {
             return null;
         }
+    }
+    public String getCartaz() {
+        return cartaz;
+    }
+
+    public void setCartaz(String cartaz) {
+        this.cartaz = cartaz;
     }
 }

@@ -43,10 +43,6 @@ public class Compra implements Imprimivel{
         return total;
     }
 
-    // public void setTotal(double total) {
-    //     this.total = total;
-    // }
-
     public void imprimir() {
         String registroCompra = Integer.toString(this.registroCompra);
         String nomeArquivo = "fileOut/Compra" + registroCompra + ".txt";
@@ -137,7 +133,7 @@ public class Compra implements Imprimivel{
                 return true;
             }
         }
-        return false; // nao encontrou alguem com o nome dado para ser retirado
+        return false; // nao encontrou alguem com o id dado para ser retirado
     }
 
     /*
@@ -156,6 +152,10 @@ public class Compra implements Imprimivel{
         return false; // nao encontrou alguem com o nome dado para ser retirado
     }
 
+    /*
+    Recebe um assento e uma sessao e verifica se esse assento fornecido desta dada sessao
+    esta livre ou nao, sendo true um assento livre e false um ja ocupado.
+     */
     public boolean verificarAssento(int assento, Sessao sessao) {
         boolean condicao = true;
         List<Boolean> lista = sessao.getListaAssentos();

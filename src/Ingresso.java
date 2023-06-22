@@ -1,3 +1,4 @@
+// import java.io.BufferedWriter;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,7 +20,30 @@ public class Ingresso {
             this.id = contador;
             contador++;
     }
+    
+    public int getId() {
+        return id;
+    }
+    
+    public int getAssento() {
+        return assento;
+    }
 
+    public Sessao getSessao() {
+        return sessao;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public boolean getEhInteiro() {
+        return ehInteiro;
+    }
+
+    /*
+    Calcula o preço do ingresso, levando em conta o preço de uma sala e se é ou nao um ingresso inteiro.
+     */
     public double calcPreco(Sessao sessao, boolean ehInteiro) {
         double valor = 0;
         Sala sala = sessao.getSala();
@@ -30,28 +54,12 @@ public class Ingresso {
         return valor;
     }
 
-    public int getId() {
-        return id;
-    }
-    
-    public double getPreco() {
-        return preco;
-    }
-
     public void setPreco(double preco) {
         this.preco = preco;
     }
 
-    public int getAssento() {
-        return assento;
-    }
-
     public void setAssento(int assento) {
         this.assento = assento;
-    }
-
-    public Sessao getSessao() {
-        return sessao;
     }
 
     public void setSessao(Sessao sessao) {
@@ -80,7 +88,7 @@ public class Ingresso {
             bufferEscrita.write("Sala: " + sessao.getSala().getId() + "\n");
             bufferEscrita.write("#############################\n\n");
             bufferEscrita.write("Bom filme!!");
-
+            bufferEscrita.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
