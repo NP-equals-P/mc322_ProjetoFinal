@@ -1,5 +1,4 @@
-import java.time.LocalDate;
-import java.util.*;
+
 
 public abstract class Funcionario {
     /*
@@ -7,14 +6,12 @@ public abstract class Funcionario {
      */
     private String unidade;
     private String nome;
-    private final String CPF;
-    private LocalDate dataNascimento;
+    private final String cpf;
     private double salario;
 
-    public Funcionario(String nome, String CPF, LocalDate dataNascimento, double salario) {
+    public Funcionario(String nome, String cpf, double salario) {
         this.nome = nome;
-        this.CPF = CPF;
-        this.dataNascimento = dataNascimento;
+        this.cpf = cpf;
         this.salario = salario;
     }
 
