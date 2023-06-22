@@ -8,8 +8,8 @@ public class Vendedor extends Funcionario{
      */
     private List<Compra> listaCompras;
 
-    public Vendedor(String nome, String cpf, double salario) {
-        super(nome, cpf, salario);
+    public Vendedor(String unidade, String nome, String cpf, double salario) {
+        super(unidade, nome, cpf, salario);
         this.listaCompras = new ArrayList<Compra>();
     }
 

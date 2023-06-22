@@ -7,8 +7,8 @@ public class Gerente extends Funcionario{
     e gerenciar os já existentes, além de realizar Compras
      */
 
-    public Gerente(String nome, String CPF, LocalDate dataNascimento, double salario) {
-        super(nome, CPF, dataNascimento, salario);
+    public Gerente(String unidade, String nome, String CPF, double salario) {
+        super(unidade, nome, CPF, salario);
     }
 //    public boolean adicionarFuncionario();
 }

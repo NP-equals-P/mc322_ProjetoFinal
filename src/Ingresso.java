@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class Ingresso {
@@ -33,5 +36,53 @@ public class Ingresso {
     
     public double getPreco() {
         return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public int getAssento() {
+        return assento;
+    }
+
+    public void setAssento(int assento) {
+        this.assento = assento;
+    }
+
+    public Sessao getSessao() {
+        return sessao;
+    }
+
+    public void setSessao(Sessao sessao) {
+        this.sessao = sessao;
+    }
+
+    public boolean isEhInteiro() {
+        return ehInteiro;
+    }
+
+    public void setEhInteiro(boolean ehInteiro) {
+        this.ehInteiro = ehInteiro;
+    }
+
+    public void imprimir() {
+        String id = Integer.toString(getId());
+        String nomeArquivo = "fileOut/Ingresso" + id + ".txt";
+        Sessao sessao = getSessao();
+
+        try {
+            BufferedWriter bufferEscrita = new BufferedWriter(new FileWriter(nomeArquivo));
+            // Escrevendo as informações do ingresso
+            bufferEscrita.write("Filme: " + sessao.getFilme() + "\n");
+            bufferEscrita.write("Preço: " + getPreco() + "\n");
+            bufferEscrita.write("Horário da sessão: " + sessao.getHorario() + "\n");
+            bufferEscrita.write("Sala: " + sessao.getSala().getId() + "\n");
+            bufferEscrita.write("#############################\n\n");
+            bufferEscrita.write("Bom filme!!");
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

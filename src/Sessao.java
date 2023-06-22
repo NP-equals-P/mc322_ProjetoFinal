@@ -1,7 +1,7 @@
+import java.io.*;
+import java.nio.file.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Sessao {
     // ideia: talvez colocar pra apenas o Gerente poder criar uma sessão
@@ -51,11 +51,37 @@ public class Sessao {
     public List<Boolean> getListaAssentos() {
         return listaAssentos;
     }
-    // public int getLugaresLivres() {
-    //     return lugaresLivres;
-    // }
 
-    // public void setLugaresLivres(int lugaresLivres) {
-    //     this.lugaresLivres = lugaresLivres;
-    // }
+    public static List<String> lerFilmes() {
+        /*
+        Lê um arquivo CSV e retorna um ArrayList com o nome de filmes nas
+        posições pares (posicao mod2 == 0) e um caminho para imagem nas posições
+        ímpares (posicao mod2 == 1), sendo que na posição seguinte a um filme, tem
+        a imagem desse filme
+         */
+        List<String> listaArquivo = new ArrayList<String>();
+        try {
+            Scanner scanner = new Scanner(System.in);
+            Path caminho = Paths.get("fileIn/Test1.csv"); // só pra testes esta com string fixa, mas o nome do arquivo vem pela interface
+            // Paths.get encontra o caminho absoluto com base no caminho relativo
+            BufferedReader arquivo = new BufferedReader(new FileReader("fileIn/Test1.csv"));
+            String linha;
+            String[] buffer;
+            while ((linha = arquivo.readLine()) != null) {
+                buffer = linha.split(",");
+                for (String Str : buffer) {
+                    listaArquivo.add(Str);
+                }
+            }
+            arquivo.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (!listaArquivo.isEmpty()) {
+            return listaArquivo;
+        } else {
+            return null;
+        }
+    }
 }

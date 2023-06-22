@@ -9,7 +9,8 @@ public abstract class Funcionario {
     private final String cpf;
     private double salario;
 
-    public Funcionario(String nome, String cpf, double salario) {
+    public Funcionario(String unidade, String nome, String cpf, double salario) {
+        this.unidade = unidade;
         this.nome = nome;
         this.cpf = cpf;
         this.salario = salario;

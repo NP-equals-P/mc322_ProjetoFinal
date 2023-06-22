@@ -49,7 +49,7 @@ public class Compra implements Imprimivel{
 
     public void imprimir() {
         String registroCompra = Integer.toString(this.registroCompra);
-        String nomeArquivo = "Compra" + registroCompra + ".txt";
+        String nomeArquivo = "fileOut/Compra" + registroCompra + ".txt";
 
         try {
             BufferedWriter bufferEscrita = new BufferedWriter(new FileWriter(nomeArquivo));
@@ -71,6 +71,7 @@ public class Compra implements Imprimivel{
                 bufferEscrita.write("Assento: \n");
                 bufferEscrita.write("Filme: \n");
             }
+            bufferEscrita.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
