@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +71,25 @@ public class Entidade {
     public void calcValorArrecadado() {
         for (Unidade u : listaUnidades) {
             valorArrecadado += u.getSaldo();
+        }
+    }
+
+    public void imprimir() {
+        String nomeArquivo = "fileOut/" + getNomeRede() + "Corp.txt";
+        try {
+            BufferedWriter bufferEscrita = new BufferedWriter(new FileWriter(nomeArquivo));
+            // Escrevendo as informações sobre a Entidade
+            bufferEscrita.write("Todos os direitos a " + getNomeRede() + "\n");
+            bufferEscrita.write("Endereço da Sede: " + getEnderecoRede() + "\n");
+            bufferEscrita.write("Email da Sede: " + getEmailRede() + "\n");
+            String qntdeFiliais = Integer.toString(getListaUnidades().size());
+            bufferEscrita.write("Quantidade de filiais:" + qntdeFiliais + "\n");
+            bufferEscrita.write("Patrimônio da coorporação: " + getValorArrecadado() + "\n");
+            bufferEscrita.write("#############################\n\n");
+            bufferEscrita.write("Venha conhecer!!");
+            bufferEscrita.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

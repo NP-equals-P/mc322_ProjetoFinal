@@ -1,25 +1,40 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class Unidade {
     /*
     Filial da Entidade, será responsável por conter os Funcionários e as Compras
      */
+    private String nome;
     private String cnpj;
     private List<Funcionario> listaFuncionarios;
     private String endereco;
     private String email;
     private List<Compra> listaCompras;
     private List<Sessao> listaSessoes;
+    private Entidade entidade;
     private double saldo;
 
-    public Unidade(String cnpj, String endereco, String email) {
+    public Unidade(String nome, String cnpj, String endereco, String email, Entidade entidade) {
+        this.nome = nome;
         this.cnpj = cnpj;
         this.endereco = endereco;
         this.email = email;
         this.listaFuncionarios = new ArrayList<Funcionario>();
         this.listaCompras = new ArrayList<Compra>();
         this.listaSessoes = new ArrayList<Sessao>();
+        this.entidade = entidade;
         this.saldo = 0;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getCnpj() {
@@ -50,9 +65,17 @@ public class Unidade {
         return saldo;
     }
 
+    public Entidade getEntidade() {
+        return entidade;
+    }
+
+    public void setEntidade(Entidade entidade) {
+        this.entidade = entidade;
+    }
+
     /*
-    Calcula o salario de um funcionario (fornecido), com base na sua lista de compras.
-     */
+        Calcula o salario de um funcionario (fornecido), com base na sua lista de compras.
+         */
     public void calcSalario(Vendedor vendedor) {
         double soma = 0;
         for (Compra c : vendedor.getListaCompras()) {
@@ -72,6 +95,27 @@ public class Unidade {
         }
         for (Funcionario f : listaFuncionarios) {
             saldo -= f.getSalario();
+        }
+    }
+
+    public void imprimir() {
+        String nomeArquivo = "fileOut/" + getNome() + " - " + getCnpj() + ".txt";
+        try {
+            BufferedWriter bufferEscrita = new BufferedWriter(new FileWriter(nomeArquivo));
+            // Escrevendo as informações da Unidade
+            bufferEscrita.write("A empresa" + getNome() + "é uma filial de" + this.entidade.getNomeRede() + "\n");
+            bufferEscrita.write("CNPJ: " + getCnpj() + "\n");
+            bufferEscrita.write("Email: " + getEmail() + "\n");
+            String qntdeFuncionarios = Integer.toString(getListaFuncionarios().size());
+            String qntdeSessoes = Integer.toString(getListaSessoes().size());
+            bufferEscrita.write("Quantidade de funcionários:" + qntdeFuncionarios + "\n");
+            bufferEscrita.write("Quantidade de sessões oferecidas: " + qntdeSessoes + "\n");
+            bufferEscrita.write("Patrimônio Líquido: " + getSaldo() + "\n");
+            bufferEscrita.write("#############################\n\n");
+            bufferEscrita.write("Venha conhecer!!");
+            bufferEscrita.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

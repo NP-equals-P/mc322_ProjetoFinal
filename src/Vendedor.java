@@ -8,6 +8,7 @@ public class Vendedor extends Funcionario{
     private List<Compra> listaCompras;
 
     /*
+
     Construtor
      */
     public Vendedor(Unidade unidade, String nome, String cpf, double salario) {
