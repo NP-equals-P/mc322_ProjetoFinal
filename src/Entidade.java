@@ -92,4 +92,13 @@ public class Entidade {
             System.err.println(e.getCause());
         }
     }
+
+    public ArrayList<Funcionario> getListaFuncionarios() {
+        ArrayList<Funcionario> lista = new ArrayList<>();
+        for (Unidade unidade : listaUnidades) {
+            lista.addAll(unidade.getListaFuncionarios());
+        }
+
+        return lista;
+    }
 }
