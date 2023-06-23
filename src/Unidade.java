@@ -7,7 +7,6 @@ public class Unidade {
     /*
     Filial da Entidade, será responsável por conter os Funcionários e as Compras
      */
-    private String nome;
     private String cnpj;
     private List<Funcionario> listaFuncionarios;
     private String endereco;
@@ -17,9 +16,8 @@ public class Unidade {
     private Entidade entidade;
     private double saldo;
 
-    public Unidade(String nome, String cnpj, String endereco, String email, Entidade entidade) {
-        this.nome = nome;
-        this.cnpj = cnpj;
+    public Unidade(String cnpj, String endereco, String email, Entidade entidade) {
+        this.cnpj = cnpj.replaceAll("[^0-9]", ""); // para colocar apenas os números
         this.endereco = endereco;
         this.email = email;
         this.listaFuncionarios = new ArrayList<Funcionario>();
@@ -27,14 +25,6 @@ public class Unidade {
         this.listaSessoes = new ArrayList<Sessao>();
         this.entidade = entidade;
         this.saldo = 0;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getCnpj() {
@@ -99,11 +89,11 @@ public class Unidade {
     }
 
     public void imprimir() {
-        String nomeArquivo = "fileOut/" + getNome() + " - " + getCnpj() + ".txt";
+        String nomeArquivo = "fileOut/Unidade" + getCnpj() + ".txt";
         try {
             BufferedWriter bufferEscrita = new BufferedWriter(new FileWriter(nomeArquivo));
             // Escrevendo as informações da Unidade
-            bufferEscrita.write("A empresa" + getNome() + "é uma filial de" + this.entidade.getNomeRede() + "\n");
+            bufferEscrita.write("Esta unidade é uma filial de " + this.entidade.getNomeRede() + "©\n\n");
             bufferEscrita.write("CNPJ: " + getCnpj() + "\n");
             bufferEscrita.write("Email: " + getEmail() + "\n");
             String qntdeFuncionarios = Integer.toString(getListaFuncionarios().size());
@@ -114,8 +104,8 @@ public class Unidade {
             bufferEscrita.write("#############################\n\n");
             bufferEscrita.write("Venha conhecer!!");
             bufferEscrita.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException problema) {
+            System.err.println(problema.getCause());
         }
     }
 

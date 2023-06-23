@@ -79,7 +79,7 @@ public class Entidade {
         try {
             BufferedWriter bufferEscrita = new BufferedWriter(new FileWriter(nomeArquivo));
             // Escrevendo as informações sobre a Entidade
-            bufferEscrita.write("Todos os direitos a " + getNomeRede() + "\n");
+            bufferEscrita.write("Todos os direitos a " + getNomeRede() + "©\n\n");
             bufferEscrita.write("Endereço da Sede: " + getEnderecoRede() + "\n");
             bufferEscrita.write("Email da Sede: " + getEmailRede() + "\n");
             String qntdeFiliais = Integer.toString(getListaUnidades().size());
@@ -89,7 +89,7 @@ public class Entidade {
             bufferEscrita.write("Venha conhecer!!");
             bufferEscrita.close();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println(e.getCause());
         }
     }
 }
