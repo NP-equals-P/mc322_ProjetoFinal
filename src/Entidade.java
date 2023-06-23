@@ -92,4 +92,13 @@ public class Entidade {
             throw new RuntimeException(e);
         }
     }
+
+    public ArrayList<Funcionario> getListaFuncionarios() {
+        ArrayList<Funcionario> lista = new ArrayList<>();
+        for (Unidade unidade : listaUnidades) {
+            lista.addAll(unidade.getListaFuncionarios());
+        }
+
+        return lista;
+    }
 }
