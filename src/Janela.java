@@ -6,6 +6,7 @@ public class Janela {
     /* Criar nome dos cards */
     public static final String LOGIN = "Login";
     public static final String GERENTE = "Gerente";
+    public static final String INSERIR_FUNCIONARIO = "Inserir Funcionario";
     private final Entidade entidade;
 
     public Janela(Entidade entidade, String titulo) {
