@@ -11,8 +11,8 @@ public class Vendedor extends Funcionario{
 
     Construtor
      */
-    public Vendedor(Unidade unidade, String nome, String cpf, double salario) {
-        super(unidade, nome, cpf, salario);
+    public Vendedor(Unidade unidade, String nome, String cpf, double salario, String login, String senha) {
+        super(unidade, nome, cpf, salario, login, senha);
         this.listaCompras = new ArrayList<Compra>();
     }
 
