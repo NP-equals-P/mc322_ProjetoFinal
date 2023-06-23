@@ -4,7 +4,8 @@ import java.awt.*;
 public class Janela {
     private final JPanel cards;
     /* Criar nome dos cards */
-    private static final String LOGIN = "Login";
+    public static final String LOGIN = "Login";
+    public static final String GERENTE = "Gerente";
     private final Entidade entidade;
 
     public Janela(Entidade entidade, String titulo) {
@@ -21,7 +22,12 @@ public class Janela {
 
         /* Adiciona cards (paineis) */
         cards.add(new telaLogin(this).getPainelLogin(), LOGIN);
+
         frame.setContentPane(cards);
+    }
+
+    public void adicionarCard(String card, JPanel painel) {
+        cards.add(painel, card);
     }
 
     public void trocarCard(String card) {
@@ -31,5 +37,9 @@ public class Janela {
 
     public Entidade getEntidade() {
         return entidade;
+    }
+
+    public JPanel getCards() {
+        return cards;
     }
 }

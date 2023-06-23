@@ -37,8 +37,10 @@ public class telaLogin {
                     labelErroLogin.setVisible(true);
                     labelErroLogin.setText("Senha incorreta!");
                 } else {
-                    labelErroLogin.setVisible(false);
-                    buttonEntrar.setText("Entrou!");
+                    if (funcionario.getClass() == Gerente.class) {
+                        janela.adicionarCard(Janela.GERENTE, new telaGerente(janela, (Gerente) funcionario).getPainelGerente());
+                        janela.trocarCard(Janela.GERENTE);
+                    }
                 }
             }
         });
