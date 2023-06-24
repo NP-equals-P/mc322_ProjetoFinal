@@ -55,10 +55,8 @@ public class Sessao {
          */
         List<String> listaArquivo = new ArrayList<String>();
         try {
-            Scanner scanner = new Scanner(System.in);
-            Path caminho = Paths.get("fileIn/Test.csv"); // só pra testes esta com string fixa, mas o nome do arquivo vem pela interface
             // Paths.get encontra o caminho absoluto com base no caminho relativo
-            BufferedReader arquivo = new BufferedReader(new FileReader("fileIn/Test.csv"));
+            BufferedReader arquivo = new BufferedReader(new FileReader("/home/math/Projeto - MC322/mc322_ProjetoFinal/fileIn/Test1.csv"));
             String linha;
             String[] buffer;
             while ((linha = arquivo.readLine()) != null) {
@@ -69,7 +67,7 @@ public class Sessao {
             }
             arquivo.close();
         } catch (FileNotFoundException notFound) {
-            System.err.println("Arquivo de filmes inexistente");
+            System.err.println(notFound.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
         }

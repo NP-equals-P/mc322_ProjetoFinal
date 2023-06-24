@@ -13,6 +13,7 @@ public class Unidade {
     private String email;
     private List<Compra> listaCompras;
     private List<Sessao> listaSessoes;
+    private List<Consumivel> listaConsumivel;
     private Entidade entidade;
     private double saldo;
 
@@ -23,6 +24,7 @@ public class Unidade {
         this.listaFuncionarios = new ArrayList<Funcionario>();
         this.listaCompras = new ArrayList<Compra>();
         this.listaSessoes = new ArrayList<Sessao>();
+        this.listaConsumivel = new ArrayList<Consumivel>();
         this.entidade = entidade;
         this.saldo = 0;
     }
@@ -63,9 +65,17 @@ public class Unidade {
         this.entidade = entidade;
     }
 
+    public List<Consumivel> getListaConsumivel() {
+        return listaConsumivel;
+    }
+
+    public void setListaConsumivel(List<Consumivel> listaConsumivel) {
+        this.listaConsumivel = listaConsumivel;
+    }
+
     /*
-        Calcula o salario de um funcionario (fornecido), com base na sua lista de compras.
-         */
+            Calcula o salario de um funcionario (fornecido), com base na sua lista de compras.
+             */
     public void calcSalario(Vendedor vendedor) {
         double soma = 0;
         for (Compra c : vendedor.getListaCompras()) {
@@ -89,7 +99,7 @@ public class Unidade {
     }
 
     public void imprimir() {
-        String nomeArquivo = "fileOut/Unidade" + getCnpj() + ".txt";
+        String nomeArquivo = "/home/math/Projeto - MC322/mc322_ProjetoFinal/fileOut/Unidade" + getCnpj() + ".txt";
         try {
             BufferedWriter bufferEscrita = new BufferedWriter(new FileWriter(nomeArquivo));
             // Escrevendo as informações da Unidade
@@ -105,7 +115,7 @@ public class Unidade {
             bufferEscrita.write("Venha conhecer!!");
             bufferEscrita.close();
         } catch (IOException problema) {
-            System.err.println(problema.getCause());
+            System.err.println(problema.getMessage());
         }
     }
 

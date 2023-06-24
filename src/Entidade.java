@@ -75,7 +75,7 @@ public class Entidade {
     }
 
     public void imprimir() {
-        String nomeArquivo = "fileOut/" + getNomeRede() + "Corp.txt";
+        String nomeArquivo = "/home/math/Projeto - MC322/mc322_ProjetoFinal/fileOut/" + getNomeRede() + "Corp.txt";
         try {
             BufferedWriter bufferEscrita = new BufferedWriter(new FileWriter(nomeArquivo));
             // Escrevendo as informações sobre a Entidade

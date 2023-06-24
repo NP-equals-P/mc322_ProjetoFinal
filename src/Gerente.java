@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 
@@ -72,5 +76,28 @@ public class Gerente extends Funcionario{
             }
         }
     }
+
+    public void inicializarConsumiveis() {
+        try {
+            // Paths.get encontra o caminho absoluto com base no caminho relativo
+            BufferedReader arquivo = new BufferedReader(new FileReader("/home/math/Projeto - MC322/mc322_ProjetoFinal/fileIn/Test1.csv"));
+            String linha;
+            String[] buffer;
+            while ((linha = arquivo.readLine()) != null) {
+                buffer = linha.split(",");
+                String nome = buffer[0];
+                double preco = Double.parseDouble(buffer[1]);
+                Consumivel consumo = new Consumivel(nome, preco);
+                getUnidade().getListaConsumivel().add(consumo);
+            }
+            arquivo.close();
+        } catch (FileNotFoundException notFound) {
+            System.err.println(notFound.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 }

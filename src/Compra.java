@@ -45,33 +45,34 @@ public class Compra implements Imprimivel{
 
     public void imprimir() {
         String registroCompra = Integer.toString(this.registroCompra);
-        String nomeArquivo = "fileOut/Compra" + registroCompra + ".txt";
+        String nomeArquivo = "/home/math/Projeto - MC322/mc322_ProjetoFinal/fileOut/Compra" + registroCompra + ".txt";
 
         try {
             BufferedWriter bufferEscrita = new BufferedWriter(new FileWriter(nomeArquivo));
             // Escrevendo o recibo da compra
-            bufferEscrita.write("Código da compra: " + Integer.toString(getRegistroCompra()) + "\n");
-            bufferEscrita.write("#############################\n");
+            bufferEscrita.write("Código da compra: " + Integer.toString(getRegistroCompra()) + "\n\n");
             bufferEscrita.write("Quantidade de ingressos comprados: " + this.listaIngressos.size() + "\n");
+            bufferEscrita.write("#############################\n");
             for (Ingresso i : listaIngressos) {
-                bufferEscrita.write("Horário: \n");
-                bufferEscrita.write("Assento: \n");
-                bufferEscrita.write("Filme: \n");
-                bufferEscrita.write("Preço: \n");
+                bufferEscrita.write("Horário: "+i.getSessao().getHorario()+"\n");
+                bufferEscrita.write("Assento: "+i.getAssento()+"\n");
+                bufferEscrita.write("Filme: "+ i.getSessao().getFilme()+"\n");
+                bufferEscrita.write("Preço: " + i.getPreco() +"\n");
                 bufferEscrita.write("----------------------------------\n");
             }
+            bufferEscrita.write("Quantidade de consumíveis comprados: "+this.listaConsumo.size()+"\n");
             bufferEscrita.write("#############################\n");
-            bufferEscrita.write("Consumíveis comprados:\n");
-            for (Consumivel i : listaConsumo) {
-                bufferEscrita.write("Horário: \n");
-                bufferEscrita.write("Assento: \n");
-                bufferEscrita.write("Filme: \n");
+            for (Consumivel c : listaConsumo) {
+                bufferEscrita.write("Comida: "+ c.getNome()+"\n");
+                bufferEscrita.write("Valor: " + c.getPreco()+"\n");
+                bufferEscrita.write("----------------------------------\n");
             }
             bufferEscrita.close();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println((e.getMessage()));
         }
     }
+
     /*
     Recalcula o valor total da compra
      */

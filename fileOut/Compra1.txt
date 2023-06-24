@@ -1,5 +1,6 @@
 Código da compra: 1
-#############################
+
 Quantidade de ingressos comprados: 0
 #############################
-Consumíveis comprados:
+Quantidade de consumíveis comprados: 0
+#############################
