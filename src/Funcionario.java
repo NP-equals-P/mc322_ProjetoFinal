@@ -47,4 +47,14 @@ public abstract class Funcionario {
     public String getSenha() {
         return senha;
     }
+
+    @Override
+    public String toString() {
+        return "Unidade: " + getUnidade() + "\n" +
+                "Nome: " + getNome() + "\n" +
+                "CPF: " + getCpf() + "\n" +
+                "Salário: " + getSalario() + "\n" +
+                "Login: " + getLogin() + "\n" +
+                "Senha: " + getSenha();
+    }
 }

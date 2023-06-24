@@ -85,4 +85,12 @@ public class Sessao {
     public void setCartaz(String cartaz) {
         this.cartaz = cartaz;
     }
+
+    @Override
+    public String toString() {
+        return "Horário: " + getHorario() + "\n" +
+                "Sala: " + getSala().getId() + "\n" +
+                "Filme: " + getFilme() + "\n" +
+                "Horário: " + getHorario() + "\n";
+    }
 }
