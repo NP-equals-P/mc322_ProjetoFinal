@@ -1,8 +1,7 @@
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 public class telaGerente {
     private JTabbedPane painelVendedor;
@@ -16,6 +15,12 @@ public class telaGerente {
     private JButton removerButton;
     private JButton alterarButton;
     private JButton cadastrarButton;
+    private JList<Sessao> listaSessoes;
+    private JButton modificarFilmeButton;
+    private JLabel labelTituloFilme;
+    private JLabel labelImagem;
+    private JList listaConsumiveis;
+    private JButton alterarPrecoButton;
 
     public telaGerente(Janela janela, Gerente gerente) {
         alterarButton.setEnabled(false);
@@ -38,9 +43,7 @@ public class telaGerente {
             }
             atualizarTextoInfo(selecionado);
 
-            if (selecionado == gerente) {
-                removerButton.setEnabled(false);
-            }
+            removerButton.setEnabled(selecionado != gerente);
             alterarButton.setEnabled(true);
         });
 
@@ -60,12 +63,6 @@ public class telaGerente {
                 gerente.demitirFuncionario(selecionado.getCpf());
             }
         });
-        listaFuncionarios.addPropertyChangeListener(new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-
-            }
-        });
         alterarButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -74,9 +71,37 @@ public class telaGerente {
                     String salario = JOptionPane.showInputDialog("Digite o novo salário:");
                     gerente.modificarSalario(selecionado.getCpf(), Double.parseDouble(salario));
                     atualizarTextoInfo(selecionado);
-                } catch (NullPointerException exception) {
+                } catch (NullPointerException ignored) {
                 } catch (NumberFormatException exception) {
                     JOptionPane.showMessageDialog(null, "Insira um número!");
+                }
+            }
+        });
+
+        DefaultListModel<Sessao> listaSessoesModelo = new DefaultListModel<>();
+        listaSessoesModelo.addAll(gerente.getUnidade().getListaSessoes());
+        listaSessoes.setModel(listaSessoesModelo);
+        modificarFilmeButton.setEnabled(false);
+
+        listaSessoes.addListSelectionListener(e -> {
+            Sessao selecionada = listaSessoes.getSelectedValue();
+            atualizarSessaoInfo(selecionada);
+            modificarFilmeButton.setEnabled(true);
+        });
+        modificarFilmeButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Sessao selecionada = listaSessoes.getSelectedValue();
+                try {
+                    String filme = JOptionPane.showInputDialog("Digite o nome do Filme:");
+                    JFileChooser escolher = new JFileChooser("fileIn/");
+                    escolher.setDialogTitle("Escolher cartaz");
+                    escolher.addChoosableFileFilter(new FileNameExtensionFilter("Imagens", "jpg", "jpeg", "png", "gif"));
+                    if (escolher.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                        gerente.modificarFilme(filme, escolher.getSelectedFile().getPath(), selecionada);
+                        atualizarSessaoInfo(selecionada);
+                    }
+                } catch (NullPointerException ignored) {
                 }
             }
         });
@@ -93,5 +118,10 @@ public class telaGerente {
                 "Login: " + selecionado.getLogin() + "\n" +
                 "Senha: " + selecionado.getSenha() + "\n";
         textoFuncionarioInfo.setText(info);
+    }
+
+    public void atualizarSessaoInfo(Sessao selecionada) {
+        labelTituloFilme.setText(selecionada.getFilme());
+        labelImagem.setText("<html><img width=250 height=250 src=\"file:"+ selecionada.getCartaz() + "\"><html>");
     }
 }
