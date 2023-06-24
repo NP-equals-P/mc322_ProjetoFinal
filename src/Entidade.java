@@ -101,4 +101,13 @@ public class Entidade {
 
         return lista;
     }
+
+    public String toString() {
+        calcValorArrecadado();
+        return "Rede: " + getNomeRede() + "\n" +
+                "Endereço: " + getEnderecoRede() + "\n" +
+                "Telefone: " + getTelefoneRede() + "\n" +
+                "Email: " + getEmailRede() + "\n" +
+                "Valor Arrecadado: " + getValorArrecadado();
+    }
 }
