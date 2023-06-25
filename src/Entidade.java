@@ -108,6 +108,6 @@ public class Entidade {
                 "Endereço: " + getEnderecoRede() + "\n" +
                 "Telefone: " + getTelefoneRede() + "\n" +
                 "Email: " + getEmailRede() + "\n" +
-                "Valor Arrecadado: " + getValorArrecadado();
+                "Valor Arrecadado: R$ " + getValorArrecadado();
     }
 }

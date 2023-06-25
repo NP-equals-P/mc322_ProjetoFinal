@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class telaInserirVendedor {
+public class telaCadastrarFuncionario {
     private JTextField campoNome;
     private JTextField campoCPF;
     private JTextField campoLogin;
@@ -14,9 +14,12 @@ public class telaInserirVendedor {
     private JLabel labelErro;
     private JPanel painelInserir;
 
-    public telaInserirVendedor(Janela janela, Gerente gerente) {
+    public telaCadastrarFuncionario(Janela janela, Gerente gerente) {
+        /* Configurações Iniciais */
         labelErro.setVisible(false);
         labelErro.setForeground(Color.RED);
+
+        /* Eventos */
         voltarButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -25,6 +28,7 @@ public class telaInserirVendedor {
                 janela.getCards().remove(painelInserir);
             }
         });
+
         confirmarButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -34,6 +38,9 @@ public class telaInserirVendedor {
                     String login = campoLogin.getText();
                     String senha = String.valueOf(campoSenha.getPassword());
                     String tipo = (String)seletorTipo.getSelectedItem();
+                    if (tipo == null) {
+                        throw new NullPointerException();
+                    }
                     gerente.contratarFuncionario(tipo, nome, cpf, login, senha);
 
                     janela.adicionarCard(Janela.GERENTE, new telaGerente(janela, gerente).getPainelGerente());
