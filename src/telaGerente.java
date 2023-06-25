@@ -157,7 +157,7 @@ public class telaGerente {
                 List<Consumivel> consumiveisUnidade = gerente.getUnidade().getListaConsumivel();
                 Consumivel selecionado = consumiveisUnidade.get(listaConsumiveis.getSelectedIndex());
                 String preco = JOptionPane.showInputDialog("Digite o preço:");
-//                    gerente.modificarPrecoConsumivel(selecionado, Double.parseDouble(preco));
+                    gerente.alterarPreco(selecionado.getNome(), Double.parseDouble(preco));
                 listaConsumiveisModelo.set(listaConsumiveis.getSelectedIndex(),
                                            selecionado.getNome() + "(R$ " + selecionado.getPreco() + ")");
             } catch (NullPointerException ignored) {
@@ -178,7 +178,7 @@ public class telaGerente {
             try {
                 String nome = JOptionPane.showInputDialog("Digite o nome:");
                 String preco = JOptionPane.showInputDialog("Digite o preço:");
-//                    gerente.adicionarConsumivel(nome, preco);
+                    gerente.adicionarConsumivel(nome, Double.parseDouble(preco));
                 listaConsumiveisModelo.addElement(nome + "(R$ " + preco + ")");
             } catch (NullPointerException ignored) {
             } catch (NumberFormatException exception) {
