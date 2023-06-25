@@ -76,11 +76,12 @@ public class Ingresso {
 
     public void imprimir() {
         String id = Integer.toString(getId());
-        String nomeArquivo = "fileOut/Ingresso" + id + ".txt";
+        String diretorioAtual = System.getProperty("user.dir");
+        String caminho = diretorioAtual + "fileOut/Ingresso" + id + ".txt";
         Sessao sessao = getSessao();
 
         try {
-            BufferedWriter bufferEscrita = new BufferedWriter(new FileWriter(nomeArquivo));
+            BufferedWriter bufferEscrita = new BufferedWriter(new FileWriter(caminho));
             // Escrevendo as informações do ingresso
             bufferEscrita.write("Filme: " + sessao.getFilme() + "\n");
             bufferEscrita.write("Preço: " + getPreco() + "\n");

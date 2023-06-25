@@ -99,9 +99,10 @@ public class Unidade {
     }
 
     public void imprimir() {
-        String nomeArquivo = "/home/math/Projeto - MC322/mc322_ProjetoFinal/fileOut/Unidade" + getCnpj() + ".txt";
+        String diretorioAtual = System.getProperty("user.dir");
+        String caminho = diretorioAtual + "/fileOut/Unidade" + getCnpj() + ".txt";
         try {
-            BufferedWriter bufferEscrita = new BufferedWriter(new FileWriter(nomeArquivo));
+            BufferedWriter bufferEscrita = new BufferedWriter(new FileWriter(caminho));
             // Escrevendo as informações da Unidade
             bufferEscrita.write("Esta unidade é uma filial de " + this.entidade.getNomeRede() + "©\n\n");
             bufferEscrita.write("CNPJ: " + getCnpj() + "\n");

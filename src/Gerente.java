@@ -80,7 +80,9 @@ public class Gerente extends Funcionario{
     public void inicializarConsumiveis() {
         try {
             // Paths.get encontra o caminho absoluto com base no caminho relativo
-            BufferedReader arquivo = new BufferedReader(new FileReader("/home/math/Projeto - MC322/mc322_ProjetoFinal/fileIn/Test1.csv"));
+            String diretorioAtual = System.getProperty("user.dir");
+            String caminho = diretorioAtual + "/fileIn/Consumiveis.csv";
+            BufferedReader arquivo = new BufferedReader(new FileReader(caminho));
             String linha;
             String[] buffer;
             while ((linha = arquivo.readLine()) != null) {
@@ -98,6 +100,20 @@ public class Gerente extends Funcionario{
         }
     }
 
+    public boolean alterarPreco(String nome, double novoPreco) {
+        for (Consumivel comida : getUnidade().getListaConsumivel()) {
+            if (comida.getNome().equals(nome)) {
+                comida.setPreco(novoPreco);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void adicionarConsumivel(String nome, double preco) {
+        Consumivel comida = new Consumivel(nome, preco);
+        getUnidade().getListaConsumivel().add(comida);
+    }
 
 
 }

@@ -55,8 +55,9 @@ public class Sessao {
          */
         List<String> listaArquivo = new ArrayList<String>();
         try {
-            // Paths.get encontra o caminho absoluto com base no caminho relativo
-            BufferedReader arquivo = new BufferedReader(new FileReader("/home/math/Projeto - MC322/mc322_ProjetoFinal/fileIn/Test1.csv"));
+            String diretorioAtual = System.getProperty("user.dir");
+            String caminho = diretorioAtual + "/fileIn/Filmes_em_Cartaz.csv";
+            BufferedReader arquivo = new BufferedReader(new FileReader(caminho));
             String linha;
             String[] buffer;
             while ((linha = arquivo.readLine()) != null) {
@@ -69,7 +70,7 @@ public class Sessao {
         } catch (FileNotFoundException notFound) {
             System.err.println(notFound.getMessage());
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
 
         if (!listaArquivo.isEmpty()) {

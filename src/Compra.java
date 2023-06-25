@@ -45,10 +45,10 @@ public class Compra implements Imprimivel{
 
     public void imprimir() {
         String registroCompra = Integer.toString(this.registroCompra);
-        String nomeArquivo = "/home/math/Projeto - MC322/mc322_ProjetoFinal/fileOut/Compra" + registroCompra + ".txt";
-
+        String diretorioAtual = System.getProperty("user.dir");
+        String caminho = diretorioAtual + "/fileOut/Compra" + registroCompra + ".txt";
         try {
-            BufferedWriter bufferEscrita = new BufferedWriter(new FileWriter(nomeArquivo));
+            BufferedWriter bufferEscrita = new BufferedWriter(new FileWriter(caminho));
             // Escrevendo o recibo da compra
             bufferEscrita.write("Código da compra: " + Integer.toString(getRegistroCompra()) + "\n\n");
             bufferEscrita.write("Quantidade de ingressos comprados: " + this.listaIngressos.size() + "\n");
