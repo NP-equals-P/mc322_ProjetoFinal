@@ -16,9 +16,10 @@ public class telaGerente {
     private JList<String> listaSessoes;
     private JButton modificarFilmeButton;
     private JLabel labelImagem;
-    private JList<Consumivel> listaConsumiveis;
+    private JList<String> listaConsumiveis;
     private JButton alterarPrecoButton;
     private JTextArea textFilme;
+    private JButton adicionarItemButton;
 
     public telaGerente(Janela janela, Gerente gerente) {
         /* Aba Funcionarios */
@@ -125,7 +126,8 @@ public class telaGerente {
                     String filme = JOptionPane.showInputDialog("Digite o nome do Filme:");
                     JFileChooser escolher = new JFileChooser("fileIn/");
                     escolher.setDialogTitle("Escolher cartaz");
-                    escolher.addChoosableFileFilter(new FileNameExtensionFilter("Imagens", "jpg", "jpeg", "png", "gif"));
+                    escolher.addChoosableFileFilter(new FileNameExtensionFilter("Imagens",
+                                                                      "jpg", "jpeg", "png", "gif"));
                     escolher.setAcceptAllFileFilterUsed(false);
                     if (escolher.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                         gerente.modificarFilme(filme, escolher.getSelectedFile().getPath(), selecionada);
@@ -133,6 +135,54 @@ public class telaGerente {
                     }
                 } catch (NullPointerException ignored) {
                 }
+            }
+        });
+
+        /* Aba Consumíveis */
+        /* Populando JList com Consumiveis */
+        DefaultListModel<String> listaConsumiveisModelo = new DefaultListModel<>();
+        i = 0;
+        for (Consumivel c : gerente.getUnidade().getListaConsumivel()) {
+            listaConsumiveisModelo.add(i, c.getNome() + "(R$ " + c.getPreco() + ")");
+            i++;
+        }
+        listaConsumiveis.setModel(listaConsumiveisModelo);
+
+        /* Configurações Iniciais */
+        alterarPrecoButton.setEnabled(false);
+
+        /* Eventos */
+        alterarPrecoButton.addActionListener(e -> {
+            try {
+                List<Consumivel> consumiveisUnidade = gerente.getUnidade().getListaConsumivel();
+                Consumivel selecionado = consumiveisUnidade.get(listaConsumiveis.getSelectedIndex());
+                String preco = JOptionPane.showInputDialog("Digite o preço:");
+//                    gerente.modificarPrecoConsumivel(selecionado, Double.parseDouble(preco));
+                listaConsumiveisModelo.set(listaConsumiveis.getSelectedIndex(),
+                                           selecionado.getNome() + "(R$ " + selecionado.getPreco() + ")");
+            } catch (NullPointerException ignored) {
+            } catch (NumberFormatException exception) {
+                JOptionPane.showMessageDialog(null, "Valor não numérico!");
+            }
+        });
+
+        listaConsumiveis.addListSelectionListener(e -> {
+            if (listaConsumiveis.getSelectedIndex() == -1) {
+                alterarPrecoButton.setEnabled(false);
+                return;
+            }
+            alterarPrecoButton.setEnabled(true);
+        });
+
+        adicionarItemButton.addActionListener(e -> {
+            try {
+                String nome = JOptionPane.showInputDialog("Digite o nome:");
+                String preco = JOptionPane.showInputDialog("Digite o preço:");
+//                    gerente.adicionarConsumivel(nome, preco);
+                listaConsumiveisModelo.addElement(nome + "(R$ " + preco + ")");
+            } catch (NullPointerException ignored) {
+            } catch (NumberFormatException exception) {
+                JOptionPane.showMessageDialog(null, "Valor não numérico!");
             }
         });
     }
