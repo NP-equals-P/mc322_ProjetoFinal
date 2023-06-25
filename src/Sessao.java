@@ -90,8 +90,9 @@ public class Sessao {
     @Override
     public String toString() {
         return "Horário: " + getHorario() + "\n" +
-                "Sala: " + getSala().getId() + "\n" +
-                "Filme: " + getFilme() + "\n" +
-                "Horário: " + getHorario() + "\n";
+                "Sala: " + getSala().getId() +
+                (getSala().getEh3D() ? " 3D" : "") +
+                (getSala().getEhVIP() ? " VIP" : "") + "\n" +
+                "Filme: " + getFilme();
     }
 }

@@ -2,101 +2,133 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 public class telaGerente {
-    private JTabbedPane painelVendedor;
-    private JPanel painelConsumiveis;
-    private JPanel painelSessoes;
     private JPanel painelGerente;
     private JLabel labelBemVindo;
     private JButton buttonSair;
-    private JList<Funcionario> listaFuncionarios;
-    private JTextArea textoFuncionarioInfo;
+    private JList<String> listaFuncionarios;
+    private JTextArea labelFuncionarioInfo;
     private JButton removerButton;
     private JButton alterarButton;
     private JButton cadastrarButton;
-    private JList<Sessao> listaSessoes;
+    private JList<String> listaSessoes;
     private JButton modificarFilmeButton;
-    private JLabel labelTituloFilme;
     private JLabel labelImagem;
-    private JList listaConsumiveis;
+    private JList<String> listaConsumiveis;
     private JButton alterarPrecoButton;
+    private JTextArea textFilme;
+    private JButton adicionarItemButton;
 
     public telaGerente(Janela janela, Gerente gerente) {
-        alterarButton.setEnabled(false);
-        DefaultListModel<Funcionario> listaFuncionariosModelo = new DefaultListModel<>();
-        listaFuncionariosModelo.addAll(gerente.getUnidade().getListaFuncionarios());
+        /* Aba Funcionarios */
+        /* Popula JList com Funcionarios */
+        DefaultListModel<String> listaFuncionariosModelo = new DefaultListModel<>();
+        int i = 0;
+        for (Funcionario f : gerente.getUnidade().getListaFuncionarios()) {
+            listaFuncionariosModelo.add(i, f.getCpf());
+            i++;
+        }
         listaFuncionarios.setModel(listaFuncionariosModelo);
+
+        /* Configuração Inicial */
         labelBemVindo.setText("Bem-vindo(a), " + gerente.getNome());
+        alterarButton.setEnabled(false);
+
+        /* Eventos */
         buttonSair.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                janela.getCards().add(Janela.LOGIN, new telaLogin(janela).getPainelLogin());
                 janela.trocarCard(Janela.LOGIN);
                 janela.getCards().remove(painelGerente);
             }
         });
+
         listaFuncionarios.addListSelectionListener(e -> {
-            Funcionario selecionado = listaFuncionarios.getSelectedValue();
-            if (selecionado == null) {
-                textoFuncionarioInfo.setText("");
+            if (listaFuncionarios.getSelectedIndex() == -1) {
+                labelFuncionarioInfo.setText("");
                 return;
             }
-            atualizarTextoInfo(selecionado);
-
+            List<Funcionario> funcionariosUnidade = gerente.getUnidade().getListaFuncionarios();
+            Funcionario selecionado = funcionariosUnidade.get(listaFuncionarios.getSelectedIndex());
+            labelFuncionarioInfo.setText(selecionado.toString());
             removerButton.setEnabled(selecionado != gerente);
             alterarButton.setEnabled(true);
         });
 
-
         cadastrarButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                janela.adicionarCard(Janela.INSERIR_FUNCIONARIO, new telaInserirVendedor(janela, gerente).getPainelInserir());
+                janela.adicionarCard(Janela.INSERIR_FUNCIONARIO, new telaCadastrarFuncionario(janela, gerente).getPainelInserir());
+                janela.trocarCard(Janela.INSERIR_FUNCIONARIO);
                 janela.getCards().remove(painelGerente);
             }
         });
+
         removerButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Funcionario selecionado = listaFuncionarios.getSelectedValue();
-                listaFuncionariosModelo.removeElement(selecionado);
+                List<Funcionario> funcionariosUnidade = gerente.getUnidade().getListaFuncionarios();
+                Funcionario selecionado = funcionariosUnidade.get(listaFuncionarios.getSelectedIndex());
+                listaFuncionariosModelo.removeElementAt(listaFuncionarios.getSelectedIndex());
                 gerente.demitirFuncionario(selecionado.getCpf());
             }
         });
+
         alterarButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Funcionario selecionado = listaFuncionarios.getSelectedValue();
+                List<Funcionario> funcionariosUnidade = gerente.getUnidade().getListaFuncionarios();
+                Funcionario selecionado = funcionariosUnidade.get(listaFuncionarios.getSelectedIndex());
                 try {
                     String salario = JOptionPane.showInputDialog("Digite o novo salário:");
                     gerente.modificarSalario(selecionado.getCpf(), Double.parseDouble(salario));
-                    atualizarTextoInfo(selecionado);
+                    labelFuncionarioInfo.setText(selecionado.toString());
                 } catch (NullPointerException ignored) {
                 } catch (NumberFormatException exception) {
-                    JOptionPane.showMessageDialog(null, "Insira um número!");
+                    JOptionPane.showMessageDialog(null, "Valor não numérico!");
                 }
             }
         });
 
-        DefaultListModel<Sessao> listaSessoesModelo = new DefaultListModel<>();
-        listaSessoesModelo.addAll(gerente.getUnidade().getListaSessoes());
+        /* Aba Sessões */
+        /* Populando JList com Sessões */
+        DefaultListModel<String> listaSessoesModelo = new DefaultListModel<>();
+        i = 0;
+        for (Sessao s : gerente.getUnidade().getListaSessoes()) {
+            listaSessoesModelo.add(i, "Sala " + s.getSala().getId() + " " + s.getHorario());
+            i++;
+        }
         listaSessoes.setModel(listaSessoesModelo);
+
+        /* Configurações Iniciais */
         modificarFilmeButton.setEnabled(false);
 
+        /* Eventos */
         listaSessoes.addListSelectionListener(e -> {
-            Sessao selecionada = listaSessoes.getSelectedValue();
+            if (listaSessoes.getSelectedIndex() == -1) {
+                return;
+            }
+            List<Sessao> sessoesUnidade = gerente.getUnidade().getListaSessoes();
+            Sessao selecionada = sessoesUnidade.get(listaSessoes.getSelectedIndex());
             atualizarSessaoInfo(selecionada);
             modificarFilmeButton.setEnabled(true);
         });
+
         modificarFilmeButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Sessao selecionada = listaSessoes.getSelectedValue();
+                List<Sessao> sessoesUnidade = gerente.getUnidade().getListaSessoes();
+                Sessao selecionada = sessoesUnidade.get(listaSessoes.getSelectedIndex());
                 try {
                     String filme = JOptionPane.showInputDialog("Digite o nome do Filme:");
                     JFileChooser escolher = new JFileChooser("fileIn/");
                     escolher.setDialogTitle("Escolher cartaz");
-                    escolher.addChoosableFileFilter(new FileNameExtensionFilter("Imagens", "jpg", "jpeg", "png", "gif"));
+                    escolher.addChoosableFileFilter(new FileNameExtensionFilter("Imagens",
+                                                                      "jpg", "jpeg", "png", "gif"));
+                    escolher.setAcceptAllFileFilterUsed(false);
                     if (escolher.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                         gerente.modificarFilme(filme, escolher.getSelectedFile().getPath(), selecionada);
                         atualizarSessaoInfo(selecionada);
@@ -105,23 +137,62 @@ public class telaGerente {
                 }
             }
         });
+
+        /* Aba Consumíveis */
+        /* Populando JList com Consumiveis */
+        DefaultListModel<String> listaConsumiveisModelo = new DefaultListModel<>();
+        i = 0;
+        for (Consumivel c : gerente.getUnidade().getListaConsumivel()) {
+            listaConsumiveisModelo.add(i, c.getNome() + "(R$ " + c.getPreco() + ")");
+            i++;
+        }
+        listaConsumiveis.setModel(listaConsumiveisModelo);
+
+        /* Configurações Iniciais */
+        alterarPrecoButton.setEnabled(false);
+
+        /* Eventos */
+        alterarPrecoButton.addActionListener(e -> {
+            try {
+                List<Consumivel> consumiveisUnidade = gerente.getUnidade().getListaConsumivel();
+                Consumivel selecionado = consumiveisUnidade.get(listaConsumiveis.getSelectedIndex());
+                String preco = JOptionPane.showInputDialog("Digite o preço:");
+//                    gerente.modificarPrecoConsumivel(selecionado, Double.parseDouble(preco));
+                listaConsumiveisModelo.set(listaConsumiveis.getSelectedIndex(),
+                                           selecionado.getNome() + "(R$ " + selecionado.getPreco() + ")");
+            } catch (NullPointerException ignored) {
+            } catch (NumberFormatException exception) {
+                JOptionPane.showMessageDialog(null, "Valor não numérico!");
+            }
+        });
+
+        listaConsumiveis.addListSelectionListener(e -> {
+            if (listaConsumiveis.getSelectedIndex() == -1) {
+                alterarPrecoButton.setEnabled(false);
+                return;
+            }
+            alterarPrecoButton.setEnabled(true);
+        });
+
+        adicionarItemButton.addActionListener(e -> {
+            try {
+                String nome = JOptionPane.showInputDialog("Digite o nome:");
+                String preco = JOptionPane.showInputDialog("Digite o preço:");
+//                    gerente.adicionarConsumivel(nome, preco);
+                listaConsumiveisModelo.addElement(nome + "(R$ " + preco + ")");
+            } catch (NullPointerException ignored) {
+            } catch (NumberFormatException exception) {
+                JOptionPane.showMessageDialog(null, "Valor não numérico!");
+            }
+        });
     }
 
     public JPanel getPainelGerente() {
         return painelGerente;
     }
 
-    public void atualizarTextoInfo(Funcionario selecionado) {
-        String info = "Nome: " + selecionado.getNome() + "\n" +
-                "CPF: " + selecionado.getCpf() + "\n" +
-                "Salário: R$ " + selecionado.getSalario() + "\n" +
-                "Login: " + selecionado.getLogin() + "\n" +
-                "Senha: " + selecionado.getSenha() + "\n";
-        textoFuncionarioInfo.setText(info);
-    }
-
     public void atualizarSessaoInfo(Sessao selecionada) {
-        labelTituloFilme.setText(selecionada.getFilme());
+        textFilme.setText(selecionada.toString());
         labelImagem.setText("<html><img width=250 height=250 src=\"file:"+ selecionada.getCartaz() + "\"><html>");
     }
 }

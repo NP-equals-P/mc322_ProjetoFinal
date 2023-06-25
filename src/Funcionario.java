@@ -50,10 +50,10 @@ public abstract class Funcionario {
 
     @Override
     public String toString() {
-        return "Unidade: " + getUnidade() + "\n" +
+        return "Unidade: " + getUnidade().getCnpj() + "\n" +
                 "Nome: " + getNome() + "\n" +
                 "CPF: " + getCpf() + "\n" +
-                "Salário: " + getSalario() + "\n" +
+                "Salário: R$ " + getSalario() + "\n" +
                 "Login: " + getLogin() + "\n" +
                 "Senha: " + getSenha();
     }
