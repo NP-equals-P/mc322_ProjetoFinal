@@ -4,20 +4,20 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class telaLogin {
-    private JLabel labelTitulo;
-    private JLabel labelLogin;
     private JTextField campoLogin;
     private JButton buttonEntrar;
     private JPanel painelLogin;
-
     private JLabel labelErroLogin;
-    private JLabel labelSenha;
     private JTextField campoSenha;
+    private JTextArea textTitulo;
 
     public telaLogin(Janela janela) {
+        /* Configurações Iniciais */
         labelErroLogin.setVisible(false);
         labelErroLogin.setForeground(Color.RED);
+        textTitulo.setText(janela.getEntidade().toString());
 
+        /* Eventos */
         buttonEntrar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -40,33 +40,14 @@ public class telaLogin {
                     if (funcionario.getClass() == Gerente.class) {
                         janela.adicionarCard(Janela.GERENTE, new telaGerente(janela, (Gerente) funcionario).getPainelGerente());
                         janela.trocarCard(Janela.GERENTE);
+                        janela.getCards().remove(painelLogin);
                     }
                 }
             }
         });
     }
 
-    public JLabel getLabelLogin() {
-        return labelTitulo;
-    }
-
-    public JLabel getLabelUsuario() {
-        return labelLogin;
-    }
-
-    public JTextField getCampoUsuario() {
-        return campoLogin;
-    }
-
-    public JButton getButtonEntrar() {
-        return buttonEntrar;
-    }
-
     public JPanel getPainelLogin() {
         return painelLogin;
-    }
-
-    public JLabel getLabelErroLogin() {
-        return labelErroLogin;
     }
 }
