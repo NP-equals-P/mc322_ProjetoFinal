@@ -42,6 +42,10 @@ public class telaLogin {
                         janela.trocarCard(Janela.GERENTE);
                         janela.getCards().remove(painelLogin);
                     }
+                    else {
+                        funcionario.getUnidade().inicializarExemplo();
+                        JanelaMatheus frameVendedor = new JanelaMatheus(entidade.getListaUnidades().get(0), (Vendedor) funcionario);
+                    }
                 }
             }
         });

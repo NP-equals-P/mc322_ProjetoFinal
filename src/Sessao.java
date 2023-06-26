@@ -87,6 +87,18 @@ public class Sessao {
         this.cartaz = cartaz;
     }
 
+    public int assentosOcupados() {
+        int contador = 0;
+
+        for (Boolean assento : listaAssentos) {
+            if (assento == false) {
+                contador += 1;
+            }
+        }
+
+        return contador;
+    }
+
     @Override
     public String toString() {
         return "Horário: " + getHorario() + "\n" +

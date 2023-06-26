@@ -13,6 +13,8 @@ public class Unidade {
     private String email;
     private List<Compra> listaCompras;
     private List<Sessao> listaSessoes;
+
+    private List<Sala> listaSalas;
     private List<Consumivel> listaConsumivel;
     private Entidade entidade;
     private double saldo;
@@ -24,6 +26,7 @@ public class Unidade {
         this.listaFuncionarios = new ArrayList<Funcionario>();
         this.listaCompras = new ArrayList<Compra>();
         this.listaSessoes = new ArrayList<Sessao>();
+        this.listaSalas = new ArrayList<Sala>();
         this.listaConsumivel = new ArrayList<Consumivel>();
         this.entidade = entidade;
         this.saldo = 0;
@@ -52,6 +55,8 @@ public class Unidade {
     public List<Sessao> getListaSessoes() {
         return listaSessoes;
     }
+
+    public List<Sala> getListaSalas() {return listaSalas;}
 
     public double getSaldo() {
         return saldo;
@@ -124,5 +129,43 @@ public class Unidade {
         }
     }
 
+    public void inicializarExemplo() {
+        //Unidade ja construida para exemplificar na apresentação
+        //Instanciando e adicionando as salas da unidade
+        Sala sala1 = new Sala(1, 100, false, false);
+        Sala sala2 = new Sala(2, 100, true, false);
+        Sala sala3 = new Sala(3, 100, false, true);
+        Sala sala4 = new Sala(4, 100, true, true);
+        Sala[] listaSalas = {sala1, sala2, sala3, sala4};
+        for (Sala sala : listaSalas) {
+            this.getListaSalas().add(sala);
+        }
 
+
+        //Instanciando e adicionando as sessoes da unidade (4 filmes, 5 sessoes cada = 20 sessoes)
+        Sessao sessao1 = new Sessao("10:00-12:00", sala1, "Titanic", "path");
+        Sessao sessao2 = new Sessao("12:30-14:30", sala2, "Titanic", "path");
+        Sessao sessao3 = new Sessao("15:00-17:00", sala3, "Titanic", "path");
+        Sessao sessao4 = new Sessao("17:30-19:30", sala4, "Titanic", "path");
+        Sessao sessao5 = new Sessao("20:00-22:00", sala1, "Titanic", "path");
+        Sessao sessao6 = new Sessao("10:00-12:00", sala2, "Bacurau", "path");
+        Sessao sessao7 = new Sessao("12:30-14:30", sala3, "Bacurau", "path");
+        Sessao sessao8 = new Sessao("15:00-17:00", sala4, "Bacurau", "path");
+        Sessao sessao9 = new Sessao("17:30-19:30", sala1, "Bacurau", "path");
+        Sessao sessao10 = new Sessao("20:00-22:00", sala2, "Bacurau", "path");
+        Sessao sessao11 = new Sessao("10:00-12:00", sala3, "Vingadores", "path");
+        Sessao sessao12 = new Sessao("12:30-14:30", sala4, "Vingadores", "path");
+        Sessao sessao13 = new Sessao("15:00-17:00", sala1, "Vingadores", "path");
+        Sessao sessao14 = new Sessao("17:30-19:30", sala2, "Vingadores", "path");
+        Sessao sessao15 = new Sessao("20:00-22:00", sala3, "Vingadores", "path");
+        Sessao sessao16 = new Sessao("10:00-12:00", sala3, "2012", "path");
+        Sessao sessao17 = new Sessao("12:30-14:30", sala4, "2012", "path");
+        Sessao sessao18 = new Sessao("15:00-17:00", sala1, "2012", "path");
+        Sessao sessao19 = new Sessao("17:30-19:30", sala2, "2012", "path");
+        Sessao sessao20 = new Sessao("20:00-22:00", sala3, "2012", "path");
+        Sessao[] listaSessoes = {sessao1, sessao2, sessao3, sessao4, sessao5, sessao6, sessao7, sessao8, sessao9, sessao10, sessao11, sessao12, sessao13, sessao14, sessao15, sessao16, sessao17, sessao18, sessao19, sessao20};
+        for (Sessao sessao : listaSessoes) {
+            this.getListaSessoes().add(sessao);
+        }
+    }
 }
