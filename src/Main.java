@@ -9,7 +9,12 @@ public class Main {
         compra.imprimir();
         u1.imprimir();
         entity.imprimir();
-//        new Janela(entity,"Teste");
+        Gerente admin = new Gerente(u1, "admin", "admin", 2500, "admin", "admin");
+        u1.getListaFuncionarios().add(admin);
+        entity.getListaUnidades().add(u1);
+        admin.inicializarConsumiveis();
+
+        new Janela(entity,"Teste");
 
         List<String> arquivo = Sessao.lerFilmes();
         for (int i=0; i < arquivo.size(); i++) {
