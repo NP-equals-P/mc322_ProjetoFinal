@@ -26,7 +26,7 @@ public class PainelCategorias extends JPanel implements ActionListener, atualiza
 
         JPanel secaoSuperior = new JPanel();
         secaoSuperior.setLayout(null);
-        secaoSuperior.setBackground(Color.red);
+        secaoSuperior.setBackground(Color.black);
         secaoSuperior.setVisible(true);
         secaoSuperior.setBounds(0, 0, 800, 50);
         this.add(secaoSuperior);
@@ -41,7 +41,7 @@ public class PainelCategorias extends JPanel implements ActionListener, atualiza
 
         JPanel secaoCentral = new JPanel();
         secaoCentral.setLayout(null);
-        secaoCentral.setBackground(Color.cyan);
+        secaoCentral.setBackground(Color.blue);
         secaoCentral.setVisible(true);
         secaoCentral.setBounds(0, 50, 800, 400);
         this.add(secaoCentral);

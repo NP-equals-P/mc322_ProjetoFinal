@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -26,7 +27,7 @@ public class PainelEscolherFilme extends JPanel implements ActionListener, atual
         this.setVisible(false);
 
         JPanel secaoSuperior = new JPanel();
-        secaoSuperior.setBackground(Color.yellow);
+        secaoSuperior.setBackground(Color.black);
         secaoSuperior.setVisible(true);
         secaoSuperior.setLayout(null);
         secaoSuperior.setPreferredSize(new Dimension(800, 50));
@@ -41,7 +42,7 @@ public class PainelEscolherFilme extends JPanel implements ActionListener, atual
         secaoSuperior.add(botaoVoltar);
 
         secaoCentral = new JPanel();
-        secaoCentral.setBackground(Color.red);
+        secaoCentral.setBackground(Color.darkGray);
         secaoCentral.setVisible(true);
         secaoCentral.setLayout(new FlowLayout(FlowLayout.CENTER, 24, 65));
         secaoCentral.setPreferredSize(new Dimension(100, 283));
@@ -56,6 +57,9 @@ public class PainelEscolherFilme extends JPanel implements ActionListener, atual
         botaoFilme1.setFocusable(false);
         secaoCentral.add(botaoFilme1);
 
+        ImageIcon cartaz1 = new ImageIcon(getClass().getResource("posterFilmesAntigos\\1titanic.png"));
+        botaoFilme1.setIcon(cartaz1);
+
         botaoFilme2 = new JButton();
         botaoFilme2.setPreferredSize(new Dimension(170, 240));
         botaoFilme2.addActionListener(this);
@@ -63,6 +67,9 @@ public class PainelEscolherFilme extends JPanel implements ActionListener, atual
         botaoFilme2.setText("2");
         botaoFilme2.setFocusable(false);
         secaoCentral.add(botaoFilme2);
+
+        ImageIcon cartaz2 = new ImageIcon(getClass().getResource("posterFilmesAntigos\\2bacurau.png"));
+        botaoFilme2.setIcon(cartaz2);
 
         botaoFilme3 = new JButton();
         botaoFilme3.setPreferredSize(new Dimension(170, 240));
@@ -72,6 +79,9 @@ public class PainelEscolherFilme extends JPanel implements ActionListener, atual
         botaoFilme3.setFocusable(false);
         secaoCentral.add(botaoFilme3);
 
+        ImageIcon cartaz3 = new ImageIcon(getClass().getResource("posterFilmesAntigos\\3vingadores.png"));
+        botaoFilme3.setIcon(cartaz3);
+
         botaoFilme4 = new JButton();
         botaoFilme4.setPreferredSize(new Dimension(170, 240));
         botaoFilme4.addActionListener(this);
@@ -79,6 +89,9 @@ public class PainelEscolherFilme extends JPanel implements ActionListener, atual
         botaoFilme4.setText("4");
         botaoFilme4.setFocusable(false);
         secaoCentral.add(botaoFilme4);
+
+        ImageIcon cartaz4 = new ImageIcon(getClass().getResource("posterFilmesAntigos\\42012.png"));
+        botaoFilme4.setIcon(cartaz4);
 
     }
 

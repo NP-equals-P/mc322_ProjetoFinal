@@ -16,7 +16,7 @@ public class PainelEditarIngresso extends JPanel{
         
         informacoes = new JLabel();
         informacoes.setVisible(true);
-        informacoes.setText("Filme: " + filme + "                 (Assento: " + assento + ")");
+        informacoes.setText("Filme: " + filme + "            (Assento: " + assento + ")");
         informacoes.setFont(new Font("Calibri", Font.PLAIN, 15));
         informacoes.setBounds(0, 0, 250, 20);
         this.add(informacoes);

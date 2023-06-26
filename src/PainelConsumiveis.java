@@ -35,7 +35,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
 
         JPanel secaoSuperior = new JPanel();
         secaoSuperior.setLayout(null);
-        secaoSuperior.setBackground(Color.blue);
+        secaoSuperior.setBackground(Color.black);
         secaoSuperior.setVisible(true);
         secaoSuperior.setBounds(0, 0, 800, 50);
         this.add(secaoSuperior);
@@ -52,7 +52,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
         secaoPipoca.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 110));
         secaoPipoca.setBounds(0, 50, 800, 400);
         secaoPipoca.setVisible(false);
-        secaoPipoca.setBackground(Color.red);
+        secaoPipoca.setBackground(Color.orange);
         this.add(secaoPipoca);
 
         botaoPipocaPequena = new JButton();
@@ -91,7 +91,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
         secaoBebida.setLayout(new FlowLayout(FlowLayout.CENTER, 55, 110));
         secaoBebida.setBounds(0, 50, 800, 400);
         secaoBebida.setVisible(false);
-        secaoBebida.setBackground(Color.black);
+        secaoBebida.setBackground(Color.blue);
         this.add(secaoBebida);
 
         botaoRefrigerante = new JButton();

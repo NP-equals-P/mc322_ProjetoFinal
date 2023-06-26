@@ -41,8 +41,8 @@ public class PainelAssentosDisponiveis extends JPanel implements ActionListener,
         secaoCentral = new JPanel();
         secaoCentral.setBackground(Color.white);
         secaoCentral.setVisible(true);
-        secaoCentral.setLayout(new FlowLayout());
-        secaoCentral.setPreferredSize(new Dimension(800, 400));
+        secaoCentral.setLayout(new FlowLayout(FlowLayout.CENTER, 17, 15));
+        secaoCentral.setPreferredSize(new Dimension(800, 330));
         this.add(secaoCentral, BorderLayout.CENTER);
 
         JPanel secaoLateralDireita = new JPanel();
@@ -90,8 +90,13 @@ public class PainelAssentosDisponiveis extends JPanel implements ActionListener,
     public void atualizarPainel(int codigo) {
         secaoCentral.removeAll();
 
-        //ImageIcon imagemAssentoLivre = new ImageIcon();
-        //ImageIcon imagemAssentoOcupado = new ImageIcon();
+
+        ImageIcon imagemAssentoLivre = new ImageIcon(getClass().getResource("icones_GUI\\green_small.png"));
+        ImageIcon imagemAssentoOcupado = new ImageIcon(getClass().getResource("icones_GUI\\red_small.png"));
+
+        Sessao sessao = janela.getPainelVendedor().vendedorLogado.getUnidade().getListaSessoes().get(((janela.getPainelVendedor().sessaoSelecionada + 5*(janela.getPainelVendedor().filmeSelecionado - 1)))-1);
+
+
 
         //for (int i = 0; i < 100; i += 1) {
         //      if (unidade.getSessoesPorFilme(janela.getFilmeSelecionado()).get(janela.getSessaoSelecionada).getListaAssentos().get(i) == true) {
@@ -105,6 +110,38 @@ public class PainelAssentosDisponiveis extends JPanel implements ActionListener,
         //          secaoCentral.add(assentoOcupado);
         //      }
         //}
+        for (int i = 0; i < 100; i += 1) {
+            if (sessao.getListaAssentos().get(i) == true) {
+                JLabel assentoLivre = new JLabel();
+                assentoLivre.setIcon(imagemAssentoLivre);
+                secaoCentral.add(assentoLivre);
+
+                // JPanel assentoLivre = new JPanel();
+                // assentoLivre.setPreferredSize(new Dimension(20, 20));
+                // assentoLivre.setBackground(Color.green);
+                // secaoCentral.add(assentoLivre);
+
+            }
+            else {
+                JLabel assentoOcupado = new JLabel();
+                assentoOcupado.setIcon(imagemAssentoOcupado);
+                secaoCentral.add(assentoOcupado); 
+
+                // JPanel assentoOcupado = new JPanel();
+                // assentoOcupado.setPreferredSize(new Dimension(20, 20));
+                // assentoOcupado.setBackground(Color.red);
+                // secaoCentral.add(assentoOcupado);
+            }
+        }
+
+        this.setVisible(false);
+        this.setVisible(true);
+
+        JPanel tela = new JPanel();
+        tela.setVisible(true);
+        tela.setPreferredSize(new Dimension(500, 7));
+        tela.setBackground(Color.lightGray);
+        secaoCentral.add(tela);
     }
     
 }

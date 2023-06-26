@@ -28,7 +28,7 @@ public class PainelEscolherSessao extends JPanel implements ActionListener{
         this.setVisible(false);
 
         JPanel secaoSuperior = new JPanel();
-        secaoSuperior.setBackground(Color.pink);
+        secaoSuperior.setBackground(Color.black);
         secaoSuperior.setVisible(true);
         secaoSuperior.setLayout(null);
         secaoSuperior.setPreferredSize(new Dimension(800, 50));
@@ -43,7 +43,7 @@ public class PainelEscolherSessao extends JPanel implements ActionListener{
         secaoSuperior.add(botaoVoltar);
 
         JPanel secaoCentral = new JPanel();
-        secaoCentral.setBackground(Color.green);
+        secaoCentral.setBackground(Color.darkGray);
         secaoCentral.setVisible(true);
         secaoCentral.setLayout(new FlowLayout(FlowLayout.CENTER, 1000, 50));
         secaoCentral.setPreferredSize(new Dimension(100, 750));
@@ -55,7 +55,7 @@ public class PainelEscolherSessao extends JPanel implements ActionListener{
         botaoSessao1.setPreferredSize(new Dimension(650, 90));
         botaoSessao1.addActionListener(this);
         botaoSessao1.setVisible(true);
-        botaoSessao1.setText("Sessão 10:00 - 12:00    (" + 0 + "/100)");
+        botaoSessao1.setText("Sessão 10:00 - 12:00");
         botaoSessao1.setFont(new Font("Calibri", Font.PLAIN, 40));
         botaoSessao1.setFocusable(false);
         secaoCentral.add(botaoSessao1);
@@ -64,7 +64,7 @@ public class PainelEscolherSessao extends JPanel implements ActionListener{
         botaoSessao2.setPreferredSize(new Dimension(650, 90));
         botaoSessao2.addActionListener(this);
         botaoSessao2.setVisible(true);
-        botaoSessao2.setText("Sessão 12:30 - 14:30    (" + 0 + "/100)");
+        botaoSessao2.setText("Sessão 12:30 - 14:30");
         botaoSessao2.setFont(new Font("Calibri", Font.PLAIN, 40));
         botaoSessao2.setFocusable(false);
         secaoCentral.add(botaoSessao2);
@@ -73,7 +73,7 @@ public class PainelEscolherSessao extends JPanel implements ActionListener{
         botaoSessao3.setPreferredSize(new Dimension(650, 90));
         botaoSessao3.addActionListener(this);
         botaoSessao3.setVisible(true);
-        botaoSessao3.setText("Sessão 15:00 - 17:00    (" + 0 + "/100)");
+        botaoSessao3.setText("Sessão 15:00 - 17:00");
         botaoSessao3.setFont(new Font("Calibri", Font.PLAIN, 40));
         botaoSessao3.setFocusable(false);
         secaoCentral.add(botaoSessao3);
@@ -82,7 +82,7 @@ public class PainelEscolherSessao extends JPanel implements ActionListener{
         botaoSessao4.setPreferredSize(new Dimension(650, 90));
         botaoSessao4.addActionListener(this);
         botaoSessao4.setVisible(true);
-        botaoSessao4.setText("Sessão 17:30 - 19:30    (" + 0 + "/100)");
+        botaoSessao4.setText("Sessão 17:30 - 19:30");
         botaoSessao4.setFont(new Font("Calibri", Font.PLAIN, 40));
         botaoSessao4.setFocusable(false);
         secaoCentral.add(botaoSessao4);
@@ -91,7 +91,7 @@ public class PainelEscolherSessao extends JPanel implements ActionListener{
         botaoSessao5.setPreferredSize(new Dimension(650, 90));
         botaoSessao5.addActionListener(this);
         botaoSessao5.setVisible(true);
-        botaoSessao5.setText("Sessão 20:00 - 22:00    (" + 0 + "/100)");
+        botaoSessao5.setText("Sessão 20:00 - 22:00");
         botaoSessao5.setFont(new Font("Calibri", Font.PLAIN, 40));
         botaoSessao5.setFocusable(false);
         secaoCentral.add(botaoSessao5);
@@ -104,7 +104,7 @@ public class PainelEscolherSessao extends JPanel implements ActionListener{
             this.setVisible(false);
             janela.getPainelEscolherFilme().setVisible(true);
         }
-        else {
+        else if (true) {
             if (e.getSource() == botaoSessao1) {
                 janela.getPainelVendedor().setSessaoSelecionado(1);
             }
@@ -122,7 +122,9 @@ public class PainelEscolherSessao extends JPanel implements ActionListener{
             }
             
             this.setVisible(false);
+            janela.getPainelEscolherAssentos().atualizarPainel(0);
             janela.getPainelEscolherAssentos().setVisible(true);
+
         }
     }
     

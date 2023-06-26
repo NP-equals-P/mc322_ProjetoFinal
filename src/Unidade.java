@@ -12,6 +12,7 @@ public class Unidade {
     private String endereco;
     private String email;
     private List<Compra> listaCompras;
+    private List<Sala> listaSalas;
     private List<Sessao> listaSessoes;
     private List<Consumivel> listaConsumivel;
     private Entidade entidade;
@@ -23,6 +24,7 @@ public class Unidade {
         this.email = email;
         this.listaFuncionarios = new ArrayList<Funcionario>();
         this.listaCompras = new ArrayList<Compra>();
+        this.listaSalas = new ArrayList<Sala>();
         this.listaSessoes = new ArrayList<Sessao>();
         this.listaConsumivel = new ArrayList<Consumivel>();
         this.entidade = entidade;
@@ -47,6 +49,10 @@ public class Unidade {
 
     public List<Compra> getListaCompras() {
         return listaCompras;
+    }
+
+    public List<Sala> getListaSalas() {
+        return listaSalas;
     }
 
     public List<Sessao> getListaSessoes() {

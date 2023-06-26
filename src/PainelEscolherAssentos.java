@@ -6,9 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+//import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+//import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class PainelEscolherAssentos extends JPanel implements ActionListener, atualizar{
     JanelaMatheus janela;
@@ -82,22 +86,22 @@ public class PainelEscolherAssentos extends JPanel implements ActionListener, at
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == botaoVoltar) {
-            this.atualizarPainel(0);
+            //this.atualizarPainel(0);
             this.setVisible(false);
             janela.getPainelEscolherSessao().setVisible(true);
         }
-        else if (e.getSource() == botaoConfirmarAssentos) {
+        if (e.getSource() == botaoConfirmarAssentos) {
             this.setVisible(false);
             janela.getPainelCompra().setVisible(true);
             for (int i = 0; i < 100; i += 1) {
                 if (botoesAssentos.get(i).isSelected()) {
-                    assentosSelecionados.add(i + 1);
+                    assentosSelecionados.add(Integer.parseInt(botoesAssentos.get(i).getText()) + 1);
                 }
             }
             
-            for (Integer a : assentosSelecionados) {
-                System.out.print(a);
-            }
+            // for (Integer a : assentosSelecionados) {
+            //     System.out.print(a);
+            // }
             janela.getPainelCompra().atualizarPainel(2);
             janela.getPainelCompra().atualizarPainel(4);
         }
@@ -107,16 +111,33 @@ public class PainelEscolherAssentos extends JPanel implements ActionListener, at
     public void atualizarPainel(int codigo) {
         secaoCentral.removeAll();
 
+        ImageIcon imagemAssentoLivre = new ImageIcon(getClass().getResource("icones_GUI\\green.png"));
+        ImageIcon imagemAssentoSelecionado = new ImageIcon(getClass().getResource("icones_GUI\\gray.png"));
+
+        Sessao sessao = janela.getPainelVendedor().vendedorLogado.getUnidade().getListaSessoes().get((janela.getPainelVendedor().sessaoSelecionada + 5*(janela.getPainelVendedor().filmeSelecionado - 1))-1);
+
         botoesAssentos = new ArrayList<JCheckBox>();
 
         for (int i = 0; i < 100; i += 1) {
             JCheckBox assento = new JCheckBox();
+            assento.setText("" + i);
             assento.setPreferredSize(new Dimension(20, 20));
+            assento.setIcon(imagemAssentoLivre);
+            assento.setSelectedIcon(imagemAssentoSelecionado);
+            assento.setHorizontalAlignment(SwingConstants.CENTER);
             botoesAssentos.add(assento);
         }
 
         for (int i = 0; i < 100; i += 1) {
-            secaoCentral.add(botoesAssentos.get(i));
+            if (sessao.getListaAssentos().get(i) == true) {
+                secaoCentral.add(botoesAssentos.get(i));
+            }
+            else {
+                JPanel assentoOcupado = new JPanel();
+                assentoOcupado.setPreferredSize(new Dimension(20, 20));
+                assentoOcupado.setBackground(Color.red);
+                secaoCentral.add(assentoOcupado);
+            }
         }
 
         JPanel tela = new JPanel();

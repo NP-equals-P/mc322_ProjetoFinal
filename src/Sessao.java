@@ -95,4 +95,15 @@ public class Sessao {
                 (getSala().getEhVIP() ? " VIP" : "") + "\n" +
                 "Filme: " + getFilme();
     }
+
+    public int getAssentosOcupados() {
+        int contador = 0;
+        for(Boolean assento : listaAssentos) {
+            if (assento == false) {
+                contador += 1;
+            }
+        }
+
+        return contador;
+    }
 }

@@ -4,22 +4,23 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class PainelVendedor extends JPanel implements ActionListener, atualizar{
     JanelaMatheus janela;
-    //Vendedor vendedorLogado;
-    int filmeSelecionado;
-    int sessaoSelecionada;
+    double comissaoAtual = 0.0;
+    Vendedor vendedorLogado;
+    int filmeSelecionado = 1;
+    int sessaoSelecionada = 1;
     double totalCompra = 0.0;
     double totalIngressos = 0.0;
     double totalConsumiveis = 0.0;
-    //ArrayList<Ingresso> listaIngressos = new ArrayList<Ingresso>();
-    //ArrayList<Consumivel> listaConsumiveis = new ArrayList<Consumivel>();
     Integer[] quantidadesConsumiveis = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     Integer[] quantidadesIngressos = {0, 0, 0, 0, 0, 0};
 
@@ -32,8 +33,9 @@ public class PainelVendedor extends JPanel implements ActionListener, atualizar{
     JLabel comissao;
     JPanel secaoCentral;
 
-    PainelVendedor(JanelaMatheus janela) {
+    PainelVendedor(JanelaMatheus janela, Vendedor vendedor) {
         this.janela = janela;
+        this.vendedorLogado = vendedor;
 
         this.setBackground(Color.blue);
         this.setBounds(0, 0, 800, 450);
@@ -63,7 +65,7 @@ public class PainelVendedor extends JPanel implements ActionListener, atualizar{
         botaoFilme1.setFocusable(false);
         secaoCentral.add(botaoFilme1);
 
-        ImageIcon cartaz1 = new ImageIcon("avengers.png");
+        ImageIcon cartaz1 = new ImageIcon(getClass().getResource("posterFilmesAntigos\\1titanic.png"));
         botaoFilme1.setIcon(cartaz1);
 
         botaoFilme2 = new JButton();
@@ -74,6 +76,9 @@ public class PainelVendedor extends JPanel implements ActionListener, atualizar{
         botaoFilme2.setFocusable(false);
         secaoCentral.add(botaoFilme2);
 
+        ImageIcon cartaz2 = new ImageIcon(getClass().getResource("posterFilmesAntigos\\2bacurau.png"));
+        botaoFilme2.setIcon(cartaz2);
+
         botaoFilme3 = new JButton();
         botaoFilme3.setPreferredSize(new Dimension(170, 240));
         botaoFilme3.addActionListener(this);
@@ -82,6 +87,9 @@ public class PainelVendedor extends JPanel implements ActionListener, atualizar{
         botaoFilme3.setFocusable(false);
         secaoCentral.add(botaoFilme3);
 
+        ImageIcon cartaz3 = new ImageIcon(getClass().getResource("posterFilmesAntigos\\3vingadores.png"));
+        botaoFilme3.setIcon(cartaz3);
+
         botaoFilme4 = new JButton();
         botaoFilme4.setPreferredSize(new Dimension(170, 240));
         botaoFilme4.addActionListener(this);
@@ -89,6 +97,9 @@ public class PainelVendedor extends JPanel implements ActionListener, atualizar{
         botaoFilme4.setText("4");
         botaoFilme4.setFocusable(false);
         secaoCentral.add(botaoFilme4);
+
+        ImageIcon cartaz4 = new ImageIcon(getClass().getResource("posterFilmesAntigos\\42012.png"));
+        botaoFilme4.setIcon(cartaz4);
         
         JPanel secaoInferior = new JPanel();
         secaoInferior.setBackground(Color.black);
@@ -99,6 +110,7 @@ public class PainelVendedor extends JPanel implements ActionListener, atualizar{
 
         comissao = new JLabel("(R$" + 0 + ")");
         comissao.setVisible(true);
+        comissao.setForeground(Color.lightGray);
         comissao.setBounds(720, 25, 100, 20);
         secaoInferior.add(comissao);
         
@@ -130,12 +142,13 @@ public class PainelVendedor extends JPanel implements ActionListener, atualizar{
         else if (e.getSource() == boatoCompra) {
             //janela.getPainelCompra().atualizarPainel(0);
             filmeSelecionado = 0;
-            sessaoSelecionada = 0;
+            sessaoSelecionada = 1;
             this.setVisible(false);
             janela.getPainelCompra().setVisible(true);
         }
         else {
-            //janela.getPainelSessoesDisponiveis().atualizarPainel(0);
+            filmeSelecionado = Integer.parseInt(((JButton) e.getSource()).getText());
+            janela.getPainelSessoesDisponiveis().atualizarPainel(filmeSelecionado);
             //this.filmeSelecionado = Integer.parseInt(((JButton) e.getSource()).getText());
             this.setVisible(false);
             janela.getPainelSessoesDisponiveis().setVisible(true);
@@ -143,17 +156,14 @@ public class PainelVendedor extends JPanel implements ActionListener, atualizar{
     }
     
     public void atualizarPainel(int codigo) {
-        // if (codigo == 0) {
-        //      JButton[] listaBotoes = {botaoFilme1, botaoFilme2, botaoFilme3, botaoFilme4};
-        //      for (JButton botaoFilme : listaBotoes) {
-        //          ImageIcon cartaz = new ImageIcon(unidade.acharCartaz(Integer.parseInt(botaoFilme.getText())));
-        //          botaoFilme.setIcon(cartaz);
-        // }
-        // else {
-        //      comissao.setText("(R$" + vendedorLogado.getComissao() + ")"); 
-        // }
-        // 
-        //
+        if (codigo == 0) {
+            comissao.setText("(R$" + comissaoAtual + ")");
+            comissao.setVisible(false);
+            comissao.setVisible(true);
+        }
+        else if (codigo == 1) {
+            
+        }
     }
     
     //public void setVendedorLogado(Vendedor vendedorLogado) {
@@ -190,4 +200,74 @@ public class PainelVendedor extends JPanel implements ActionListener, atualizar{
         this.totalIngressos = valor;
     }
 
+
+    public void efetivarCompra(ArrayList<Integer> listaAssentos, int ingressosMeia) {
+        Compra novaCompra = new Compra();
+        if (listaAssentos.size() != 0) {
+            Sessao sessao = vendedorLogado.getUnidade().getListaSessoes().get((sessaoSelecionada + 5*(filmeSelecionado-1))-1);
+
+            
+            for (int i = 0; i < listaAssentos.size(); i += 1) {
+                Ingresso novoIngresso = new Ingresso(listaAssentos.get(i), sessao, true);
+                novaCompra.adicionarIngresso(novoIngresso);
+            }
+            
+            
+            for (int j = 0; j < ingressosMeia; j += 1) {
+                novaCompra.getListaIngressos().get(j).setEhInteiro(false);
+                novaCompra.getListaIngressos().get(j).setPreco(novaCompra.getListaIngressos().get(j).getPreco()/2);
+            }
+            for (Integer assento : listaAssentos) {
+                    sessao.getListaAssentos().remove((int) assento - 1);
+                    sessao.getListaAssentos().add(assento - 1, false);
+            }
+            
+        }
+
+
+        for (int h = 0; h < quantidadesConsumiveis[0]; h += 1) {
+            novaCompra.criarConsumivel("Pipoca pequena", janela.getPainelCompra().precosConsumiveis[0]);
+        }
+        for (int h = 0; h < quantidadesConsumiveis[1]; h += 1) {
+            novaCompra.criarConsumivel("Pipoca média", janela.getPainelCompra().precosConsumiveis[1]);
+        }
+        for (int h = 0; h < quantidadesConsumiveis[2]; h += 1) {
+            novaCompra.criarConsumivel("Pipoca grande", janela.getPainelCompra().precosConsumiveis[2]);
+        }
+        for (int h = 0; h < quantidadesConsumiveis[3]; h += 1) {
+            novaCompra.criarConsumivel("Pipoca balde", janela.getPainelCompra().precosConsumiveis[3]);
+        }
+        for (int h = 0; h < quantidadesConsumiveis[4]; h += 1) {
+            novaCompra.criarConsumivel("Refrigerante", janela.getPainelCompra().precosConsumiveis[4]);
+        }
+        for (int h = 0; h < quantidadesConsumiveis[5]; h += 1) {
+            novaCompra.criarConsumivel("Água", janela.getPainelCompra().precosConsumiveis[5]);
+        }
+        for (int h = 0; h < quantidadesConsumiveis[6]; h += 1) {
+            novaCompra.criarConsumivel("Suco", janela.getPainelCompra().precosConsumiveis[6]);
+        }
+        for (int h = 0; h < quantidadesConsumiveis[7]; h += 1) {
+            novaCompra.criarConsumivel("Chocolate", janela.getPainelCompra().precosConsumiveis[7]);
+        }
+        for (int h = 0; h < quantidadesConsumiveis[8]; h += 1) {
+            novaCompra.criarConsumivel("Bala", janela.getPainelCompra().precosConsumiveis[8]);
+        }
+        for (int h = 0; h < quantidadesConsumiveis[9]; h += 1) {
+            novaCompra.criarConsumivel("Amendoim", janela.getPainelCompra().precosConsumiveis[9]);
+        }
+        
+
+        //System.out.println(sessao.getListaAssentos());
+
+        novaCompra.atualizarTotal();
+
+        for (Ingresso ingresso : novaCompra.getListaIngressos()) {
+            ingresso.imprimir();
+        }
+
+        vendedorLogado.getUnidade().getListaCompras().add(novaCompra);
+
+        novaCompra.imprimir();
+        
+    }
 } 

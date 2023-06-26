@@ -77,7 +77,8 @@ public class Ingresso {
     public void imprimir() {
         String id = Integer.toString(getId());
         String diretorioAtual = System.getProperty("user.dir");
-        String caminho = diretorioAtual + "fileOut/Ingresso" + id + ".txt";
+        //String caminho = diretorioAtual + "fileOut/Ingresso" + id + ".txt";
+        String caminho = "ingresso_" + id + ".txt";
         Sessao sessao = getSessao();
 
         try {

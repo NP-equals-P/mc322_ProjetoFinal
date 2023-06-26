@@ -11,15 +11,17 @@ public class JanelaMatheus extends JFrame{
     PainelEscolherFilme painelEscolherFilme;
     PainelEscolherSessao painelEscolherSessao;
     PainelEscolherAssentos painelEscolherAssentos;
+    Unidade unidade;
 
-    JanelaMatheus() {
+    JanelaMatheus(Unidade unidade) {
         this.setTitle("Janela");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(800, 450);
         this.setResizable(false);
+        this.unidade = unidade;
         
-        painelLogin = new PainelLogin(this);
-        painelVendedor = new PainelVendedor(this);
+        painelLogin = new PainelLogin(this, unidade);
+        painelVendedor = new PainelVendedor(this, (Vendedor) unidade.getListaFuncionarios().get(0));
         painelCompra = new PainelCompra(this);
         painelCategorias = new PainelCategorias(this);
         painelConsumiveis = new PainelConsumiveis(this);

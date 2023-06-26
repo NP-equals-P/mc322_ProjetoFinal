@@ -26,6 +26,7 @@ public class PainelCompra extends JPanel implements ActionListener, atualizar{
     JTextArea areaTextoConsumiveis;
     Double[] precosConsumiveis = {10.00, 15.20, 30.00, 49.99, 6.00, 3.00, 4.99, 9.00, 4.00, 50.00};
     Double[] precosIngressos = {30.00, 40.00, 50.00};
+    double precoBase = 1.0;
     ArrayList<PainelEditarIngresso> listaBotoesAssentosSelecionados = new ArrayList<PainelEditarIngresso>();
 
     PainelCompra(JanelaMatheus janela) {
@@ -144,7 +145,7 @@ public class PainelCompra extends JPanel implements ActionListener, atualizar{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == botaoCancelar) {
             this.setVisible(false);
-            janela.getPainelEscolherAssentos().atualizarPainel(0);
+            //janela.getPainelEscolherAssentos().atualizarPainel(0);
             janela.getPainelVendedor().setVisible(true);
             janela.getPainelCategorias().secaoListarMovel.removeAll();
             janela.getPainelVendedor().zerarQuantidadeConsumiveis();
@@ -153,13 +154,27 @@ public class PainelCompra extends JPanel implements ActionListener, atualizar{
             this.atualizarPainel(1);
         }
         else if (e.getSource() == botaoConfirmarCompra) {
+            int meias = 0;
+            for (PainelEditarIngresso aux : listaBotoesAssentosSelecionados) {
+                if (aux.botaoMeia.isSelected()) {
+                    meias += 1;
+                }
+            }
+
+            janela.getPainelVendedor().comissaoAtual += 0.5 * janela.getPainelVendedor().totalConsumiveis;
+            janela.getPainelVendedor().atualizarPainel(0);
+
+            janela.getPainelVendedor().efetivarCompra(janela.getPainelEscolherAssentos().assentosSelecionados, meias);
             this.setVisible(false);
-            janela.getPainelEscolherAssentos().atualizarPainel(0);
+            if (janela.getPainelEscolherAssentos().assentosSelecionados.size() != 0) {
+                janela.getPainelEscolherAssentos().atualizarPainel(0);
+            }
             janela.getPainelCategorias().atualizarPainel(0);
             janela.getPainelCompra().atualizarPainel(0);
             janela.getPainelVendedor().setVisible(true);
             janela.getPainelVendedor().zerarQuantidadeConsumiveis();
             janela.getPainelEscolherAssentos().assentosSelecionados = new ArrayList<Integer>();
+            listaBotoesAssentosSelecionados = new ArrayList<PainelEditarIngresso>();
             secaoListarIngressos.removeAll();
             this.atualizarPainel(1);
 
@@ -175,6 +190,7 @@ public class PainelCompra extends JPanel implements ActionListener, atualizar{
                 janela.getPainelEscolherFilme().setVisible(true);
             }
             else {
+                listaBotoesAssentosSelecionados = new ArrayList<PainelEditarIngresso>();
                 janela.getPainelEscolherAssentos().botaoVoltar.setVisible(false);
                 janela.getPainelEscolherAssentos().atualizarPainel(0);
                 janela.getPainelEscolherAssentos().assentosSelecionados = new ArrayList<Integer>();
@@ -184,21 +200,28 @@ public class PainelCompra extends JPanel implements ActionListener, atualizar{
             }
         }
         else {
+            precoBase = 30.0;
+            Sessao sessao = janela.getPainelVendedor().vendedorLogado.getUnidade().getListaSessoes().get(((janela.getPainelVendedor().sessaoSelecionada + 5*(janela.getPainelVendedor().filmeSelecionado - 1)))-1);
+            if (sessao.getSala().getEh3D() == true) {
+                precoBase = (precoBase * 1.5);
+            }
+            if (sessao.getSala().getEhVIP() == true) {
+                precoBase = (precoBase * 2);
+            }
             Double totalAux = 0.0;
             for (int i = 0; i < listaBotoesAssentosSelecionados.size(); i += 1) {
                 if (listaBotoesAssentosSelecionados.get(i).botaoMeia.isSelected()) {
-                    totalAux += 0.5*(1);
+                    totalAux += 0.5*(precoBase);
                 }
                 else {
-                    totalAux += 1;
+                    totalAux += precoBase;
                 }
             }
             janela.getPainelVendedor().setTotalCompra(totalAux + janela.getPainelVendedor().totalConsumiveis);
             janela.getPainelVendedor().setTotalIngressos(totalAux);
             totalIngressos.setText("Ingressos: R$" + totalAux);
             totalCompra.setText("Total: R$" + janela.getPainelVendedor().totalCompra);
-            this.atualizarPainel(3);
-        }
+            this.atualizarPainel(3);        }
     }
 
     @Override
@@ -265,7 +288,7 @@ public class PainelCompra extends JPanel implements ActionListener, atualizar{
         }
         else if (codigo == 2) {
             for (int i = 0; i < janela.getPainelEscolherAssentos().assentosSelecionados.size(); i += 1) {
-                PainelEditarIngresso aux = new PainelEditarIngresso("Titanic", "14:00-16:00", janela.getPainelEscolherAssentos().assentosSelecionados.get(i), this);
+                PainelEditarIngresso aux = new PainelEditarIngresso(janela.getPainelVendedor().vendedorLogado.getUnidade().getListaSessoes().get((janela.getPainelVendedor().filmeSelecionado-1)*5).getFilme(), janela.getPainelVendedor().vendedorLogado.getUnidade().getListaSessoes().get(janela.getPainelVendedor().sessaoSelecionada).getHorario(), janela.getPainelEscolherAssentos().assentosSelecionados.get(i), this);
                 secaoListarIngressos.add(aux);
                 listaBotoesAssentosSelecionados.add(aux);
             }
@@ -278,13 +301,22 @@ public class PainelCompra extends JPanel implements ActionListener, atualizar{
             totalCompra.setVisible(true);
         }
         else if (codigo == 4) {
+            precoBase = 30.0;
+            Sessao sessao = janela.getPainelVendedor().vendedorLogado.getUnidade().getListaSessoes().get(((janela.getPainelVendedor().sessaoSelecionada + 5*(janela.getPainelVendedor().filmeSelecionado - 1)))-1);
+            // janela.getPainelEscolherAssentos().assentosSelecionados = new ArrayList<Integer>();
+            if (sessao.getSala().getEh3D() == true) {
+                precoBase = (precoBase * 1.5);
+            }
+            if (sessao.getSala().getEhVIP() == true) {
+                precoBase = (precoBase * 2);
+            }
             Double totalAux = 0.0;
             for (int i = 0; i < listaBotoesAssentosSelecionados.size(); i += 1) {
                 if (listaBotoesAssentosSelecionados.get(i).botaoMeia.isSelected()) {
-                    totalAux += 0.5*(1);
+                    totalAux += 0.5*(precoBase);
                 }
                 else {
-                    totalAux += 1;
+                    totalAux += precoBase;
                 }
             }
             janela.getPainelVendedor().setTotalCompra(totalAux + janela.getPainelVendedor().totalConsumiveis);
