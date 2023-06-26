@@ -74,6 +74,10 @@ public class Ingresso {
         this.ehInteiro = ehInteiro;
     }
 
+    /*
+    Cria um arquivo .txt no diretório fileOut com as principais informações sobre o
+    ingresso em questão
+     */
     public void imprimir() {
         String id = Integer.toString(getId());
         String diretorioAtual = System.getProperty("user.dir");

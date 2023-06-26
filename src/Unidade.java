@@ -98,6 +98,10 @@ public class Unidade {
         }
     }
 
+    /*
+    Cria um arquivo .txt no diretório fileOut com as principais informações sobre a
+    unidade em questão
+     */
     public void imprimir() {
         String diretorioAtual = System.getProperty("user.dir");
         String caminho = diretorioAtual + "/fileOut/Unidade" + getCnpj() + ".txt";

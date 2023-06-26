@@ -43,6 +43,10 @@ public class Compra implements Imprimivel{
         return total;
     }
 
+    /*
+    Cria um arquivo .txt no diretório fileOut com as principais informações sobre a
+    compra em questão
+     */
     public void imprimir() {
         String registroCompra = Integer.toString(this.registroCompra);
         String diretorioAtual = System.getProperty("user.dir");

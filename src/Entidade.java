@@ -74,6 +74,10 @@ public class Entidade {
         }
     }
 
+    /*
+    Cria um arquivo .txt no diretório fileOut com as principais informações sobre a
+    entidade em questão
+     */
     public void imprimir() {
         String nomeArquivo = "/home/math/Projeto - MC322/mc322_ProjetoFinal/fileOut/" + getNomeRede() + "Corp.txt";
         try {
