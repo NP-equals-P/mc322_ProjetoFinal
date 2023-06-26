@@ -1,0 +1,36 @@
+Código da compra: 2
+
+Quantidade de ingressos comprados: 6
+#############################
+Horário: 12:30-14:30
+Assento: 60
+Filme: Titanic
+Preço: 15.0
+----------------------------------
+Horário: 12:30-14:30
+Assento: 74
+Filme: Titanic
+Preço: 15.0
+----------------------------------
+Horário: 12:30-14:30
+Assento: 76
+Filme: Titanic
+Preço: 15.0
+----------------------------------
+Horário: 12:30-14:30
+Assento: 77
+Filme: Titanic
+Preço: 15.0
+----------------------------------
+Horário: 12:30-14:30
+Assento: 90
+Filme: Titanic
+Preço: 30.0
+----------------------------------
+Horário: 12:30-14:30
+Assento: 93
+Filme: Titanic
+Preço: 30.0
+----------------------------------
+Quantidade de consumíveis comprados: 0
+#############################
