@@ -11,11 +11,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class PainelAssentosDisponiveis extends JPanel implements ActionListener, atualizar{
-    JanelaMatheus janela;
+    JanelaVendedor janela;
     JButton botaoVoltar;
     JPanel secaoCentral;
 
-    PainelAssentosDisponiveis(JanelaMatheus janela) {
+    PainelAssentosDisponiveis(JanelaVendedor janela) {
         this.janela = janela;
 
         this.setBackground(Color.blue);
@@ -76,7 +76,7 @@ public class PainelAssentosDisponiveis extends JPanel implements ActionListener,
     public void atualizarAssentosDisponiveis() {
         secaoCentral.removeAll();
 
-        ImageIcon imagemAssentoLivre = new ImageIcon("icones_GUI\\green.png");
+        ImageIcon imagemAssentoLivre = new ImageIcon("icones_GUI/green.png");
 
         for (int i = 0; i < 100; i += 1) {
             JLabel assentoLivre = new JLabel();
@@ -91,8 +91,8 @@ public class PainelAssentosDisponiveis extends JPanel implements ActionListener,
         secaoCentral.removeAll();
 
 
-        ImageIcon imagemAssentoLivre = new ImageIcon(getClass().getResource("icones_GUI\\green_small.png"));
-        ImageIcon imagemAssentoOcupado = new ImageIcon(getClass().getResource("icones_GUI\\red_small.png"));
+        ImageIcon imagemAssentoLivre = new ImageIcon(getClass().getResource("icones_GUI/green_small.png"));
+        ImageIcon imagemAssentoOcupado = new ImageIcon(getClass().getResource("icones_GUI/red_small.png"));
 
         Sessao sessao = janela.getPainelVendedor().vendedorLogado.getUnidade().getListaSessoes().get(((janela.getPainelVendedor().sessaoSelecionada + 5*(janela.getPainelVendedor().filmeSelecionado - 1)))-1);
 

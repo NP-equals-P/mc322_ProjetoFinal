@@ -1,36 +1,20 @@
 Código da compra: 2
 
-Quantidade de ingressos comprados: 6
+Quantidade de ingressos comprados: 1
 #############################
-Horário: 12:30-14:30
-Assento: 60
-Filme: Titanic
+Horário: 10:00-12:00
+Assento: 40
+Filme: Bacurau
 Preço: 15.0
 ----------------------------------
-Horário: 12:30-14:30
-Assento: 74
-Filme: Titanic
-Preço: 15.0
-----------------------------------
-Horário: 12:30-14:30
-Assento: 76
-Filme: Titanic
-Preço: 15.0
-----------------------------------
-Horário: 12:30-14:30
-Assento: 77
-Filme: Titanic
-Preço: 15.0
-----------------------------------
-Horário: 12:30-14:30
-Assento: 90
-Filme: Titanic
-Preço: 30.0
-----------------------------------
-Horário: 12:30-14:30
-Assento: 93
-Filme: Titanic
-Preço: 30.0
-----------------------------------
-Quantidade de consumíveis comprados: 0
+Quantidade de consumíveis comprados: 3
 #############################
+Comida: Pipoca grande
+Valor: 30.0
+----------------------------------
+Comida: Pipoca grande
+Valor: 30.0
+----------------------------------
+Comida: Amendoim
+Valor: 50.0
+----------------------------------

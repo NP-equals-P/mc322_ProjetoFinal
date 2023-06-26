@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class PainelEscolherSessao extends JPanel implements ActionListener{
-    JanelaMatheus janela;
+    JanelaVendedor janela;
     JButton botaoVoltar;
     JButton botaoSessao1;
     JButton botaoSessao2;
@@ -19,7 +19,7 @@ public class PainelEscolherSessao extends JPanel implements ActionListener{
     JButton botaoSessao4;
     JButton botaoSessao5;
 
-    PainelEscolherSessao(JanelaMatheus janela) {
+    PainelEscolherSessao(JanelaVendedor janela) {
         this.janela = janela;
 
         this.setBackground(Color.green);

@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class PainelCategorias extends JPanel implements ActionListener, atualizar{
-    JanelaMatheus janela;
+    JanelaVendedor janela;
     JButton botaoVoltar;
     JButton botaoPipoca;
     JButton botaoBebidas;
@@ -16,7 +16,7 @@ public class PainelCategorias extends JPanel implements ActionListener, atualiza
     JPanel secaoListarMovel;
 
 
-    PainelCategorias(JanelaMatheus janela) {
+    PainelCategorias(JanelaVendedor janela) {
         this.janela = janela;
 
         this.setBackground(Color.darkGray);

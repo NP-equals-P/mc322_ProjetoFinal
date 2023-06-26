@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class PainelConsumiveis extends JPanel implements ActionListener{
-    JanelaMatheus janela;
+    JanelaVendedor janela;
     JButton botaoVoltar;
     JButton botaoAdicionar;
     JPanel secaoPipoca;
@@ -25,7 +25,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
     JButton botaoBala;   
     JButton botaoAmendoim;
 
-    PainelConsumiveis(JanelaMatheus janela) {
+    PainelConsumiveis(JanelaVendedor janela) {
         this.janela = janela;
 
         this.setBackground(Color.pink);
@@ -185,7 +185,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
         secaoOutro.setVisible(true);
     }
     
-    static void adicionarConsumivel(String nome, JanelaMatheus janela) {
+    static void adicionarConsumivel(String nome, JanelaVendedor janela) {
         if (nome.equals("Pipoca pequena")) {
             PainelComplexo aux = new PainelComplexo(0, janela, "Pipoca pequena");
             if (janela.getPainelVendedor().getQuantidadeConsumiveis()[0] == 0) {

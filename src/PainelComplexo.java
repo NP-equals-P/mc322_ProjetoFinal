@@ -11,13 +11,13 @@ import javax.swing.JPanel;
 
 public class PainelComplexo extends JPanel implements ActionListener{
     int consumivelAssociado;
-    JanelaMatheus janela;
+    JanelaVendedor janela;
     JButton botaoSomar;
     JButton botaoSubtrair;
     JLabel nome;
     String rotulo;
 
-    PainelComplexo(int codigo, JanelaMatheus janela, String rotulo) {
+    PainelComplexo(int codigo, JanelaVendedor janela, String rotulo) {
         this.rotulo = rotulo;
         this.consumivelAssociado = codigo;
         this.janela = janela;

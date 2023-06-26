@@ -44,7 +44,7 @@ public class telaLogin {
                     }
                     else {
                         funcionario.getUnidade().inicializarExemplo();
-                        JanelaMatheus frameVendedor = new JanelaMatheus(entidade.getListaUnidades().get(0), (Vendedor) funcionario);
+                        JanelaVendedor frameVendedor = new JanelaVendedor(entidade.getListaUnidades().get(0), (Vendedor) funcionario);
                     }
                 }
             }

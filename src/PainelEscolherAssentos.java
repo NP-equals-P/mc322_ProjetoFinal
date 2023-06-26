@@ -15,14 +15,14 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class PainelEscolherAssentos extends JPanel implements ActionListener, atualizar{
-    JanelaMatheus janela;
+    JanelaVendedor janela;
     JButton botaoVoltar;
     JButton botaoConfirmarAssentos;
     JPanel secaoCentral;
     ArrayList<JCheckBox> botoesAssentos;
     ArrayList<Integer> assentosSelecionados = new ArrayList<Integer>();
 
-    PainelEscolherAssentos(JanelaMatheus janela) {
+    PainelEscolherAssentos(JanelaVendedor janela) {
         this.janela = janela;
 
         this.setBackground(Color.black);
@@ -111,8 +111,8 @@ public class PainelEscolherAssentos extends JPanel implements ActionListener, at
     public void atualizarPainel(int codigo) {
         secaoCentral.removeAll();
 
-        ImageIcon imagemAssentoLivre = new ImageIcon(getClass().getResource("icones_GUI\\green.png"));
-        ImageIcon imagemAssentoSelecionado = new ImageIcon(getClass().getResource("icones_GUI\\gray.png"));
+        ImageIcon imagemAssentoLivre = new ImageIcon(getClass().getResource("icones_GUI/green.png"));
+        ImageIcon imagemAssentoSelecionado = new ImageIcon(getClass().getResource("icones_GUI/gray.png"));
 
         Sessao sessao = janela.getPainelVendedor().vendedorLogado.getUnidade().getListaSessoes().get((janela.getPainelVendedor().sessaoSelecionada + 5*(janela.getPainelVendedor().filmeSelecionado - 1))-1);
 

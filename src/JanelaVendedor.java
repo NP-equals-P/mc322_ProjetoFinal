@@ -1,6 +1,6 @@
 import javax.swing.JFrame;
 
-public class JanelaMatheus extends JFrame{
+public class JanelaVendedor extends JFrame{
     PainelLogin painelLogin;
     PainelVendedor painelVendedor;
     PainelCompra painelCompra;
@@ -13,7 +13,7 @@ public class JanelaMatheus extends JFrame{
     PainelEscolherAssentos painelEscolherAssentos;
     Unidade unidade;
 
-    JanelaMatheus(Unidade unidade, Vendedor vendedor) {
+    JanelaVendedor(Unidade unidade, Vendedor vendedor) {
         this.setTitle("Janela");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(810, 460);

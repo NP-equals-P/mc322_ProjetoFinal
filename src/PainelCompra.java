@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 public class PainelCompra extends JPanel implements ActionListener, atualizar{
-    JanelaMatheus janela;
+    JanelaVendedor janela;
     JPanel secaoListarIngressos;
     JButton botaoCancelar;
     JButton botaoEditarConsumiveis;
@@ -29,7 +29,7 @@ public class PainelCompra extends JPanel implements ActionListener, atualizar{
     double precoBase = 1.0;
     ArrayList<PainelEditarIngresso> listaBotoesAssentosSelecionados = new ArrayList<PainelEditarIngresso>();
 
-    PainelCompra(JanelaMatheus janela) {
+    PainelCompra(JanelaVendedor janela) {
         this.janela = janela;
 
         this.setBackground(Color.yellow);

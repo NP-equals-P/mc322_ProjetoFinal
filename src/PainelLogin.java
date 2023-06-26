@@ -7,13 +7,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class PainelLogin extends JPanel implements ActionListener{
-    JanelaMatheus janela;
+    JanelaVendedor janela;
     Unidade unidade;
     JButton botaoLogin;
     JTextField campoTextoNome;
     JTextField campoTextoSenha;
 
-    PainelLogin(JanelaMatheus janela, Unidade unidade) {
+    PainelLogin(JanelaVendedor janela, Unidade unidade) {
         this.unidade = unidade;
         this.janela = janela;
 
