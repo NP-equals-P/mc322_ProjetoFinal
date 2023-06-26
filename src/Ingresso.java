@@ -95,7 +95,7 @@ public class Ingresso {
             bufferEscrita.write("Bom filme!!");
             bufferEscrita.close();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println(e.getMessage());
         }
     }
 }

@@ -79,9 +79,10 @@ public class Entidade {
     entidade em questão
      */
     public void imprimir() {
-        String nomeArquivo = "/home/math/Projeto - MC322/mc322_ProjetoFinal/fileOut/" + getNomeRede() + "Corp.txt";
+        String diretorioAtual = System.getProperty("user.dir");
+        String caminho = diretorioAtual + "fileOut/" + getNomeRede() + "Corp.txt";
         try {
-            BufferedWriter bufferEscrita = new BufferedWriter(new FileWriter(nomeArquivo));
+            BufferedWriter bufferEscrita = new BufferedWriter(new FileWriter(caminho));
             // Escrevendo as informações sobre a Entidade
             bufferEscrita.write("Todos os direitos a " + getNomeRede() + "©\n\n");
             bufferEscrita.write("Endereço da Sede: " + getEnderecoRede() + "\n");
@@ -93,7 +94,7 @@ public class Entidade {
             bufferEscrita.write("Venha conhecer!!");
             bufferEscrita.close();
         } catch (IOException e) {
-            System.err.println(e.getCause());
+            System.err.println(e.getMessage());
         }
     }
 
