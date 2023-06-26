@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import javax.swing.ImageIcon;
 //import javax.swing.ImageIcon;
@@ -20,7 +21,7 @@ public class PainelEscolherAssentos extends JPanel implements ActionListener, at
     JButton botaoConfirmarAssentos;
     JPanel secaoCentral;
     ArrayList<JCheckBox> botoesAssentos;
-    ArrayList<Integer> assentosSelecionados = new ArrayList<Integer>();
+    ArrayList<Integer> assentosSelecionados = new ArrayList<>();
 
     PainelEscolherAssentos(JanelaVendedor janela) {
         this.janela = janela;
@@ -98,10 +99,7 @@ public class PainelEscolherAssentos extends JPanel implements ActionListener, at
                     assentosSelecionados.add(Integer.parseInt(botoesAssentos.get(i).getText()) + 1);
                 }
             }
-            
-            // for (Integer a : assentosSelecionados) {
-            //     System.out.print(a);
-            // }
+
             janela.getPainelCompra().atualizarPainel(2);
             janela.getPainelCompra().atualizarPainel(4);
         }
@@ -111,16 +109,16 @@ public class PainelEscolherAssentos extends JPanel implements ActionListener, at
     public void atualizarPainel(int codigo) {
         secaoCentral.removeAll();
 
-        ImageIcon imagemAssentoLivre = new ImageIcon(getClass().getResource("icones_GUI/green.png"));
-        ImageIcon imagemAssentoSelecionado = new ImageIcon(getClass().getResource("icones_GUI/gray.png"));
+        ImageIcon imagemAssentoLivre = new ImageIcon(Objects.requireNonNull(getClass().getResource("icones_GUI/green.png")));
+        ImageIcon imagemAssentoSelecionado = new ImageIcon(Objects.requireNonNull(getClass().getResource("icones_GUI/gray.png")));
 
         Sessao sessao = janela.getPainelVendedor().vendedorLogado.getUnidade().getListaSessoes().get((janela.getPainelVendedor().sessaoSelecionada + 5*(janela.getPainelVendedor().filmeSelecionado - 1))-1);
 
-        botoesAssentos = new ArrayList<JCheckBox>();
+        botoesAssentos = new ArrayList<>();
 
         for (int i = 0; i < 100; i += 1) {
             JCheckBox assento = new JCheckBox();
-            assento.setText("" + i);
+            assento.setText(String.valueOf(i));
             assento.setPreferredSize(new Dimension(20, 20));
             assento.setIcon(imagemAssentoLivre);
             assento.setSelectedIcon(imagemAssentoSelecionado);
@@ -129,7 +127,7 @@ public class PainelEscolherAssentos extends JPanel implements ActionListener, at
         }
 
         for (int i = 0; i < 100; i += 1) {
-            if (sessao.getListaAssentos().get(i) == true) {
+            if (sessao.getListaAssentos().get(i)) {
                 secaoCentral.add(botoesAssentos.get(i));
             }
             else {

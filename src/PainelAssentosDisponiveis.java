@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -91,46 +92,24 @@ public class PainelAssentosDisponiveis extends JPanel implements ActionListener,
         secaoCentral.removeAll();
 
 
-        ImageIcon imagemAssentoLivre = new ImageIcon(getClass().getResource("icones_GUI/green_small.png"));
-        ImageIcon imagemAssentoOcupado = new ImageIcon(getClass().getResource("icones_GUI/red_small.png"));
+        ImageIcon imagemAssentoLivre = new ImageIcon(Objects.requireNonNull(getClass().getResource("icones_GUI/green_small.png")));
+        ImageIcon imagemAssentoOcupado = new ImageIcon(Objects.requireNonNull(getClass().getResource("icones_GUI/red_small.png")));
 
         Sessao sessao = janela.getPainelVendedor().vendedorLogado.getUnidade().getListaSessoes().get(((janela.getPainelVendedor().sessaoSelecionada + 5*(janela.getPainelVendedor().filmeSelecionado - 1)))-1);
 
 
-
-        //for (int i = 0; i < 100; i += 1) {
-        //      if (unidade.getSessoesPorFilme(janela.getFilmeSelecionado()).get(janela.getSessaoSelecionada).getListaAssentos().get(i) == true) {
-        //          JLabel assentoLivre = new JLabel();
-        //          assentoLivre.setIcon(imagemAssentoLivre);
-        //          secaoCentral.add(assentoLivre);
-        //      }
-        //      else {
-        //          JLabel assentoOcupado = new JLabel();
-        //          assentoOcupado.setIcon(imagemAssentoOcupado);
-        //          secaoCentral.add(assentoOcupado);
-        //      }
-        //}
         for (int i = 0; i < 100; i += 1) {
-            if (sessao.getListaAssentos().get(i) == true) {
+            if (sessao.getListaAssentos().get(i)) {
                 JLabel assentoLivre = new JLabel();
                 assentoLivre.setIcon(imagemAssentoLivre);
                 secaoCentral.add(assentoLivre);
-
-                // JPanel assentoLivre = new JPanel();
-                // assentoLivre.setPreferredSize(new Dimension(20, 20));
-                // assentoLivre.setBackground(Color.green);
-                // secaoCentral.add(assentoLivre);
 
             }
             else {
                 JLabel assentoOcupado = new JLabel();
                 assentoOcupado.setIcon(imagemAssentoOcupado);
-                secaoCentral.add(assentoOcupado); 
+                secaoCentral.add(assentoOcupado);
 
-                // JPanel assentoOcupado = new JPanel();
-                // assentoOcupado.setPreferredSize(new Dimension(20, 20));
-                // assentoOcupado.setBackground(Color.red);
-                // secaoCentral.add(assentoOcupado);
             }
         }
 

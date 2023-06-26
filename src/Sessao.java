@@ -1,6 +1,4 @@
 import java.io.*;
-import java.nio.file.*;
-import java.time.LocalDate;
 import java.util.*;
 
 public class Sessao {
@@ -9,10 +7,10 @@ public class Sessao {
     /*
     Contém as informações de um horário de sessão específico
      */
-    private String horario;
-    private Sala sala;
+    private final String horario;
+    private final Sala sala;
     private String filme;
-    private List<Boolean> listaAssentos; // lista de true ou false que representa se o assento ja foi ocupado ou
+    private final List<Boolean> listaAssentos; // lista de true ou false que representa se o assento ja foi ocupado ou
                                         // nao, sendo true um assento livre.
     private String cartaz;
 
@@ -21,7 +19,7 @@ public class Sessao {
         this.sala = sala;
         this.filme = filme;
         int numAssentos = sala.getNumAssentos();
-        this.listaAssentos = new ArrayList<Boolean>(numAssentos); // cria uma lista de booleano do tamanho dos assentos da sala.
+        this.listaAssentos = new ArrayList<>(numAssentos); // cria uma lista de booleano do tamanho dos assentos da sala.
         listaAssentos.addAll(Collections.nCopies(numAssentos, Boolean.TRUE));   // coloca todos os elementos da lista como true.
         this.cartaz = cartaz;
     }
@@ -53,7 +51,7 @@ public class Sessao {
         ímpares (posicao mod2 == 1), sendo que na posição seguinte a um filme, tem
         a imagem desse filme
          */
-        List<String> listaArquivo = new ArrayList<String>();
+        List<String> listaArquivo = new ArrayList<>();
         try {
             String diretorioAtual = System.getProperty("user.dir");
             String caminho = diretorioAtual + "/fileIn/Filmes_em_Cartaz.csv";
@@ -62,13 +60,9 @@ public class Sessao {
             String[] buffer;
             while ((linha = arquivo.readLine()) != null) {
                 buffer = linha.split(",");
-                for (String Str : buffer) {
-                    listaArquivo.add(Str);
-                }
+                Collections.addAll(listaArquivo, buffer);
             }
             arquivo.close();
-        } catch (FileNotFoundException notFound) {
-            System.err.println(notFound.getMessage());
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
@@ -91,7 +85,7 @@ public class Sessao {
         int contador = 0;
 
         for (Boolean assento : listaAssentos) {
-            if (assento == false) {
+            if (!assento) {
                 contador += 1;
             }
         }

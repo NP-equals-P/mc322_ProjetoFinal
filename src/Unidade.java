@@ -7,28 +7,27 @@ public class Unidade {
     /*
     Filial da Entidade, será responsável por conter os Funcionários e as Compras
      */
-    private String cnpj;
-    private List<Funcionario> listaFuncionarios;
-    private String endereco;
-    private String email;
-    private List<Compra> listaCompras;
-    private List<Sessao> listaSessoes;
-
-    private List<Sala> listaSalas;
-    private List<Consumivel> listaConsumivel;
-    private Entidade entidade;
+    private final String cnpj;
+    private final String endereco;
+    private final List<Funcionario> listaFuncionarios;
+    private final String email;
+    private final List<Compra> listaCompras;
+    private final List<Sessao> listaSessoes;
+    private final List<Sala> listaSalas;
+    private final List<Consumivel> listaConsumivel;
+    private final Entidade entidade;
     private double saldo;
 
     public Unidade(String cnpj, String endereco, String email, Entidade entidade) {
         this.cnpj = cnpj.replaceAll("[^0-9]", ""); // para colocar apenas os números
-        this.endereco = endereco;
         this.email = email;
-        this.listaFuncionarios = new ArrayList<Funcionario>();
-        this.listaCompras = new ArrayList<Compra>();
-        this.listaSessoes = new ArrayList<Sessao>();
-        this.listaSalas = new ArrayList<Sala>();
-        this.listaConsumivel = new ArrayList<Consumivel>();
+        this.listaFuncionarios = new ArrayList<>();
+        this.listaCompras = new ArrayList<>();
+        this.listaSessoes = new ArrayList<>();
+        this.listaSalas = new ArrayList<>();
+        this.listaConsumivel = new ArrayList<>();
         this.entidade = entidade;
+        this.endereco = endereco;
         this.saldo = 0;
     }
 
@@ -40,12 +39,11 @@ public class Unidade {
         return listaFuncionarios;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
     public String getEmail() {
         return email;
+    }
+    public String getEndereco() {
+        return endereco;
     }
 
     public List<Compra> getListaCompras() {
@@ -62,20 +60,8 @@ public class Unidade {
         return saldo;
     }
 
-    public Entidade getEntidade() {
-        return entidade;
-    }
-
-    public void setEntidade(Entidade entidade) {
-        this.entidade = entidade;
-    }
-
     public List<Consumivel> getListaConsumivel() {
         return listaConsumivel;
-    }
-
-    public void setListaConsumivel(List<Consumivel> listaConsumivel) {
-        this.listaConsumivel = listaConsumivel;
     }
 
     /*
@@ -116,6 +102,7 @@ public class Unidade {
             bufferEscrita.write("Esta unidade é uma filial de " + this.entidade.getNomeRede() + "©\n\n");
             bufferEscrita.write("CNPJ: " + getCnpj() + "\n");
             bufferEscrita.write("Email: " + getEmail() + "\n");
+            bufferEscrita.write("Endereço: " + getEndereco() + "\n");
             String qntdeFuncionarios = Integer.toString(getListaFuncionarios().size());
             String qntdeSessoes = Integer.toString(getListaSessoes().size());
             bufferEscrita.write("Quantidade de funcionários:" + qntdeFuncionarios + "\n");

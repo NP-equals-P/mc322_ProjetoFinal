@@ -1,9 +1,9 @@
 public class Sala {
     private final int id;
-    private double preco;
-    private int numAssentos;
-    private boolean ehVIP;
-    private boolean eh3D;
+    private final double preco;
+    private final int numAssentos;
+    private final boolean ehVIP;
+    private final boolean eh3D;
 
 
     public Sala(int id, int numAssentos, boolean eh3D, boolean ehVIP) {
@@ -34,15 +34,4 @@ public class Sala {
         return eh3D;
     }
 
-    /*
-    Atualiza o preço da sala com base nas características
-    */
-    public void calcularPreco() {
-        if (eh3D == true) {
-            preco = (preco * 1.5);
-        }
-        if (ehVIP == true) {
-            preco = (preco * 2);
-        }
-    }
 }

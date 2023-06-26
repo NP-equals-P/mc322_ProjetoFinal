@@ -91,8 +91,6 @@ public class PainelCategorias extends JPanel implements ActionListener, atualiza
         secaoListarMovel.setBounds(0, 0, 500, 330);
         secaoListar.add(secaoListarMovel);
 
-        // PainelComplexo teste = new PainelComplexo(0, janela);
-        // secaoListarMovel.add(teste);
     }
 
     @Override

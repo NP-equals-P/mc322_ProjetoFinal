@@ -42,17 +42,16 @@ public class Gerente extends Funcionario{
     Recebe um cpf e retira esse funcionario da lista de funcionarios da unidade com base nesse cpf,
     ou seja, demite ele
      */
-    public boolean demitirFuncionario(String cpf) {
+    public void demitirFuncionario(String cpf) {
         Unidade unidade = getUnidade();
             Iterator<Funcionario> i = unidade.getListaFuncionarios().iterator();
             while(i.hasNext()) {
                 Funcionario f = i.next();
                 if (f.getCpf().equals(cpf)) {
                     i.remove();
-                    return true;
+                    return;
                 }
             }
-            return false; // nao encontrou alguem com o cpf dado para ser retirado
 
     }
 
@@ -100,14 +99,13 @@ public class Gerente extends Funcionario{
         }
     }
 
-    public boolean alterarPreco(String nome, double novoPreco) {
+    public void alterarPreco(String nome, double novoPreco) {
         for (Consumivel comida : getUnidade().getListaConsumivel()) {
             if (comida.getNome().equals(nome)) {
                 comida.setPreco(novoPreco);
-                return true;
+                return;
             }
         }
-        return false;
     }
 
     public void adicionarConsumivel(String nome, double preco) {

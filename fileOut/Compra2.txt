@@ -3,18 +3,18 @@ Código da compra: 2
 Quantidade de ingressos comprados: 1
 #############################
 Horário: 10:00-12:00
-Assento: 40
+Assento: 41
 Filme: Bacurau
-Preço: 15.0
+Preço: 30.0
 ----------------------------------
 Quantidade de consumíveis comprados: 3
 #############################
-Comida: Pipoca grande
-Valor: 30.0
+Comida: Água
+Valor: 3.0
 ----------------------------------
-Comida: Pipoca grande
-Valor: 30.0
+Comida: Água
+Valor: 3.0
 ----------------------------------
-Comida: Amendoim
-Valor: 50.0
+Comida: Bala
+Valor: 4.0
 ----------------------------------

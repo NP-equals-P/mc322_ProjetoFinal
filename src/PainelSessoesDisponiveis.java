@@ -132,12 +132,6 @@ public class PainelSessoesDisponiveis extends JPanel implements ActionListener, 
     @Override
     public void atualizarPainel(int codigo) {
         JButton[] listaBotoes = {botaoSessao1, botaoSessao2, botaoSessao3, botaoSessao4, botaoSessao5};
-        //for (int i = 0; i < 5; i += 1) {
-        //      listaBotoes[i].setText("Sessão" + unidade.sessoesPorFilme(janela.getPainelVendedor().getFilmeSelecionado()).get(i).getHorario + "(" + unidade.sessoesPorFilme(janela.getPainelVendedor.getFilmeSelecionado).get(i).getAssentosOcupados + "/100)");
-        //      if (unidade.sessoesPorFilme(janela.getPainelVendedor().getFilmeSelecionado()).get(i).getAssentosOcupados == 100) {
-        //          listaBotoes[i].setEnabled(false);
-        //      }
-        //}
 
         int j = 0;
 

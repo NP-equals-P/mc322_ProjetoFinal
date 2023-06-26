@@ -44,7 +44,7 @@ public class telaLogin {
                     }
                     else {
                         funcionario.getUnidade().inicializarExemplo();
-                        JanelaVendedor frameVendedor = new JanelaVendedor(entidade.getListaUnidades().get(0), (Vendedor) funcionario);
+                        new JanelaVendedor(entidade.getListaUnidades().get(0), (Vendedor) funcionario);
                     }
                 }
             }

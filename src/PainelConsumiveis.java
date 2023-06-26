@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 public class PainelConsumiveis extends JPanel implements ActionListener{
     JanelaVendedor janela;
     JButton botaoVoltar;
-    JButton botaoAdicionar;
     JPanel secaoPipoca;
     JPanel secaoBebida;
     JPanel secaoOutro;
@@ -154,23 +153,16 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == botaoVoltar) {
-            this.setVisible(false);
-            secaoPipoca.setVisible(false);
-            secaoBebida.setVisible(false);
-            secaoOutro.setVisible(false);
-            janela.getPainelCategorias().setVisible(true);
-        }
-        else {
-            adicionarConsumivel(((JButton)e.getSource()).getText(), janela);
+        if (e.getSource() != botaoVoltar) {
+            adicionarConsumivel(((JButton) e.getSource()).getText(), janela);
             //janela.getPainelCategorias().atualizarPainel(0);
-            this.setVisible(false);
-            secaoPipoca.setVisible(false);
-            secaoBebida.setVisible(false);
-            secaoOutro.setVisible(false);
-            janela.getPainelCategorias().setVisible(true);
 
         }
+        this.setVisible(false);
+        secaoPipoca.setVisible(false);
+        secaoBebida.setVisible(false);
+        secaoOutro.setVisible(false);
+        janela.getPainelCategorias().setVisible(true);
     }
 
     public void estadoPipoca() {
@@ -186,85 +178,97 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
     }
     
     static void adicionarConsumivel(String nome, JanelaVendedor janela) {
-        if (nome.equals("Pipoca pequena")) {
-            PainelComplexo aux = new PainelComplexo(0, janela, "Pipoca pequena");
-            if (janela.getPainelVendedor().getQuantidadeConsumiveis()[0] == 0) {
-                janela.getPainelCategorias().secaoListarMovel.add(aux);
-                janela.getPainelVendedor().getQuantidadeConsumiveis()[0] += 1;
-                aux.atualizarNome();
+        switch (nome) {
+            case "Pipoca pequena": {
+                PainelComplexo aux = new PainelComplexo(0, janela, "Pipoca pequena");
+                if (janela.getPainelVendedor().getQuantidadeConsumiveis()[0] == 0) {
+                    janela.getPainelCategorias().secaoListarMovel.add(aux);
+                    janela.getPainelVendedor().getQuantidadeConsumiveis()[0] += 1;
+                    aux.atualizarNome();
+                }
+                break;
             }
-        }
-        else if (nome.equals("Pipoca média")) {
-            PainelComplexo aux = new PainelComplexo(1, janela, "Pipoca média");
-            if (janela.getPainelVendedor().getQuantidadeConsumiveis()[1] == 0) {
-                janela.getPainelCategorias().secaoListarMovel.add(aux);
-                janela.getPainelVendedor().getQuantidadeConsumiveis()[1] += 1;
-                aux.atualizarNome();
+            case "Pipoca média": {
+                PainelComplexo aux = new PainelComplexo(1, janela, "Pipoca média");
+                if (janela.getPainelVendedor().getQuantidadeConsumiveis()[1] == 0) {
+                    janela.getPainelCategorias().secaoListarMovel.add(aux);
+                    janela.getPainelVendedor().getQuantidadeConsumiveis()[1] += 1;
+                    aux.atualizarNome();
+                }
+                break;
             }
-        }
-        else if (nome.equals("Pipoca grande")) {
-            PainelComplexo aux = new PainelComplexo(2, janela, "Pipoca grande");
-            if (janela.getPainelVendedor().getQuantidadeConsumiveis()[2] == 0) {
-                janela.getPainelCategorias().secaoListarMovel.add(aux);
-                janela.getPainelVendedor().getQuantidadeConsumiveis()[2] += 1;
-                aux.atualizarNome(); 
+            case "Pipoca grande": {
+                PainelComplexo aux = new PainelComplexo(2, janela, "Pipoca grande");
+                if (janela.getPainelVendedor().getQuantidadeConsumiveis()[2] == 0) {
+                    janela.getPainelCategorias().secaoListarMovel.add(aux);
+                    janela.getPainelVendedor().getQuantidadeConsumiveis()[2] += 1;
+                    aux.atualizarNome();
+                }
+                break;
             }
-        }
-        else if (nome.equals("Pipoca balde")) {
-            PainelComplexo aux = new PainelComplexo(3, janela, "Pipoca balde");
-            if (janela.getPainelVendedor().getQuantidadeConsumiveis()[3] == 0) {
-                janela.getPainelCategorias().secaoListarMovel.add(aux);
-                janela.getPainelVendedor().getQuantidadeConsumiveis()[3] += 1;
-                aux.atualizarNome();
+            case "Pipoca balde": {
+                PainelComplexo aux = new PainelComplexo(3, janela, "Pipoca balde");
+                if (janela.getPainelVendedor().getQuantidadeConsumiveis()[3] == 0) {
+                    janela.getPainelCategorias().secaoListarMovel.add(aux);
+                    janela.getPainelVendedor().getQuantidadeConsumiveis()[3] += 1;
+                    aux.atualizarNome();
+                }
+                break;
             }
-        }
-        else if (nome.equals("Refrigerante")) {
-            PainelComplexo aux = new PainelComplexo(4, janela, "Refrigerante");
-            if (janela.getPainelVendedor().getQuantidadeConsumiveis()[4] == 0) {
-                janela.getPainelCategorias().secaoListarMovel.add(aux);
-                janela.getPainelVendedor().getQuantidadeConsumiveis()[4] += 1;
-                aux.atualizarNome();
-            } 
-        }
-        else if (nome.equals("Água")) {
-            PainelComplexo aux = new PainelComplexo(5, janela, "Água");
-            if (janela.getPainelVendedor().getQuantidadeConsumiveis()[5] == 0) {
-                janela.getPainelCategorias().secaoListarMovel.add(aux);
-                janela.getPainelVendedor().getQuantidadeConsumiveis()[5] += 1;
-                aux.atualizarNome();
-            } 
-        }
-        else if (nome.equals("Suco")) {
-            PainelComplexo aux = new PainelComplexo(6, janela, "Suco");
-            if (janela.getPainelVendedor().getQuantidadeConsumiveis()[6] == 0) {
-                janela.getPainelCategorias().secaoListarMovel.add(aux);
-                janela.getPainelVendedor().getQuantidadeConsumiveis()[6] += 1;
-                aux.atualizarNome();
-            } 
-        }
-        else if (nome.equals("Chocolate")) {
-            PainelComplexo aux = new PainelComplexo(7, janela, "Chocolate");
-            if (janela.getPainelVendedor().getQuantidadeConsumiveis()[7] == 0) {
-                janela.getPainelCategorias().secaoListarMovel.add(aux);
-                janela.getPainelVendedor().getQuantidadeConsumiveis()[7] += 1;
-                aux.atualizarNome();
-            } 
-        }
-        else if (nome.equals("Bala")) {
-            PainelComplexo aux = new PainelComplexo(8, janela, "Bala");
-            if (janela.getPainelVendedor().getQuantidadeConsumiveis()[8] == 0) {
-                janela.getPainelCategorias().secaoListarMovel.add(aux);
-                janela.getPainelVendedor().getQuantidadeConsumiveis()[8] += 1;
-                aux.atualizarNome();
-            } 
-        }
-        else if (nome.equals("Amendoim")) {
-            PainelComplexo aux = new PainelComplexo(9, janela, "Amendoim");
-            if (janela.getPainelVendedor().getQuantidadeConsumiveis()[9] == 0) {
-                janela.getPainelCategorias().secaoListarMovel.add(aux);
-                janela.getPainelVendedor().getQuantidadeConsumiveis()[9] += 1;
-                aux.atualizarNome();
-            } 
+            case "Refrigerante": {
+                PainelComplexo aux = new PainelComplexo(4, janela, "Refrigerante");
+                if (janela.getPainelVendedor().getQuantidadeConsumiveis()[4] == 0) {
+                    janela.getPainelCategorias().secaoListarMovel.add(aux);
+                    janela.getPainelVendedor().getQuantidadeConsumiveis()[4] += 1;
+                    aux.atualizarNome();
+                }
+                break;
+            }
+            case "Água": {
+                PainelComplexo aux = new PainelComplexo(5, janela, "Água");
+                if (janela.getPainelVendedor().getQuantidadeConsumiveis()[5] == 0) {
+                    janela.getPainelCategorias().secaoListarMovel.add(aux);
+                    janela.getPainelVendedor().getQuantidadeConsumiveis()[5] += 1;
+                    aux.atualizarNome();
+                }
+                break;
+            }
+            case "Suco": {
+                PainelComplexo aux = new PainelComplexo(6, janela, "Suco");
+                if (janela.getPainelVendedor().getQuantidadeConsumiveis()[6] == 0) {
+                    janela.getPainelCategorias().secaoListarMovel.add(aux);
+                    janela.getPainelVendedor().getQuantidadeConsumiveis()[6] += 1;
+                    aux.atualizarNome();
+                }
+                break;
+            }
+            case "Chocolate": {
+                PainelComplexo aux = new PainelComplexo(7, janela, "Chocolate");
+                if (janela.getPainelVendedor().getQuantidadeConsumiveis()[7] == 0) {
+                    janela.getPainelCategorias().secaoListarMovel.add(aux);
+                    janela.getPainelVendedor().getQuantidadeConsumiveis()[7] += 1;
+                    aux.atualizarNome();
+                }
+                break;
+            }
+            case "Bala": {
+                PainelComplexo aux = new PainelComplexo(8, janela, "Bala");
+                if (janela.getPainelVendedor().getQuantidadeConsumiveis()[8] == 0) {
+                    janela.getPainelCategorias().secaoListarMovel.add(aux);
+                    janela.getPainelVendedor().getQuantidadeConsumiveis()[8] += 1;
+                    aux.atualizarNome();
+                }
+                break;
+            }
+            case "Amendoim": {
+                PainelComplexo aux = new PainelComplexo(9, janela, "Amendoim");
+                if (janela.getPainelVendedor().getQuantidadeConsumiveis()[9] == 0) {
+                    janela.getPainelCategorias().secaoListarMovel.add(aux);
+                    janela.getPainelVendedor().getQuantidadeConsumiveis()[9] += 1;
+                    aux.atualizarNome();
+                }
+                break;
+            }
         }
     }
 }

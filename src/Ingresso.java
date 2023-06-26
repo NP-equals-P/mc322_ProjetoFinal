@@ -2,11 +2,10 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.*;
 
 public class Ingresso {
     private final int id;
-    private int assento;
+    private final int assento;
     private Sessao sessao;
     private double preco;
     private boolean ehInteiro;
@@ -37,10 +36,6 @@ public class Ingresso {
         return preco;
     }
 
-    public boolean getEhInteiro() {
-        return ehInteiro;
-    }
-
     /*
     Calcula o preço do ingresso, levando em conta o preço de uma sala e se é ou nao um ingresso inteiro.
      */
@@ -48,7 +43,7 @@ public class Ingresso {
         double valor = 0;
         Sala sala = sessao.getSala();
         valor = sala.getPreco();
-        if (ehInteiro == false) {
+        if (!ehInteiro) {
             valor = (valor / 2.);
         }
         return valor;
@@ -58,16 +53,8 @@ public class Ingresso {
         this.preco = preco;
     }
 
-    public void setAssento(int assento) {
-        this.assento = assento;
-    }
-
     public void setSessao(Sessao sessao) {
         this.sessao = sessao;
-    }
-
-    public boolean isEhInteiro() {
-        return ehInteiro;
     }
 
     public void setEhInteiro(boolean ehInteiro) {
@@ -81,7 +68,7 @@ public class Ingresso {
     public void imprimir() {
         String id = Integer.toString(getId());
         String diretorioAtual = System.getProperty("user.dir");
-        String caminho = diretorioAtual + "fileOut/Ingresso" + id + ".txt";
+        String caminho = diretorioAtual + "/fileOut/Ingresso" + id + ".txt";
         Sessao sessao = getSessao();
 
         try {

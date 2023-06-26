@@ -8,11 +8,11 @@ public class Entidade {
     /*
     Classe principal da corporação, representa a rede do cinema
      */
-    private String nomeRede;
-    private String enderecoRede;
-    private String telefoneRede;
-    private String emailRede;
-    private List<Unidade> listaUnidades;
+    private final String nomeRede;
+    private final String enderecoRede;
+    private final String telefoneRede;
+    private final String emailRede;
+    private final List<Unidade> listaUnidades;
     private double valorArrecadado;
 
     public Entidade(String nomeRede, String enderecoRede, String telefoneRede, String emailRede) {
@@ -20,7 +20,7 @@ public class Entidade {
         this.enderecoRede = enderecoRede;
         this.telefoneRede = telefoneRede;
         this.emailRede = emailRede;
-        this.listaUnidades = new ArrayList<Unidade>();
+        this.listaUnidades = new ArrayList<>();
         this.valorArrecadado = 0;
     }
 
@@ -28,32 +28,16 @@ public class Entidade {
         return nomeRede;
     }
 
-    public void setNomeRede(String nomeRede) {
-        this.nomeRede = nomeRede;
-    }
-
     public String getEnderecoRede() {
         return enderecoRede;
-    }
-
-    public void setEnderecoRede(String enderecoRede) {
-        this.enderecoRede = enderecoRede;
     }
 
     public String getTelefoneRede() {
         return telefoneRede;
     }
 
-    public void setTelefoneRede(String telefoneRede) {
-        this.telefoneRede = telefoneRede;
-    }
-
     public String getEmailRede() {
         return emailRede;
-    }
-
-    public void setEmailRede(String emailRede) {
-        this.emailRede = emailRede;
     }
 
     public List<Unidade> getListaUnidades() {
@@ -70,6 +54,7 @@ public class Entidade {
      */
     public void calcValorArrecadado() {
         for (Unidade u : listaUnidades) {
+            u.calcSaldo();
             valorArrecadado += u.getSaldo();
         }
     }
@@ -80,7 +65,7 @@ public class Entidade {
      */
     public void imprimir() {
         String diretorioAtual = System.getProperty("user.dir");
-        String caminho = diretorioAtual + "fileOut/" + getNomeRede() + "Corp.txt";
+        String caminho = diretorioAtual + "/fileOut/" + getNomeRede() + "Corp.txt";
         try {
             BufferedWriter bufferEscrita = new BufferedWriter(new FileWriter(caminho));
             // Escrevendo as informações sobre a Entidade

@@ -6,16 +6,16 @@ public class Compra implements Imprimivel{
     Registra os itens que serão comprados por um cliente
      */
     private final int registroCompra;
-    private List<Ingresso> listaIngressos;
-    private List<Consumivel> listaConsumo;
+    private final List<Ingresso> listaIngressos;
+    private final List<Consumivel> listaConsumo;
     private double total;
     private static int cont = 1;
 
     public Compra() {
         this.registroCompra = cont;
         cont++;
-        this.listaConsumo = new ArrayList<Consumivel>();
-        this.listaIngressos = new ArrayList<Ingresso>();
+        this.listaConsumo = new ArrayList<>();
+        this.listaIngressos = new ArrayList<>();
         this.total = 0;
     }
 
@@ -25,18 +25,6 @@ public class Compra implements Imprimivel{
 
     public List<Ingresso> getListaIngressos() {
         return listaIngressos;
-    }
-
-    public void setListaIngressos(List<Ingresso> listaIngressos) {
-        this.listaIngressos = listaIngressos;
-    }
-
-    public List<Consumivel> getListaConsumo() {
-        return listaConsumo;
-    }
-
-    public void setListaConsumo(List<Consumivel> listaConsumo) {
-        this.listaConsumo = listaConsumo;
     }
 
     public double getTotal() {
@@ -54,7 +42,7 @@ public class Compra implements Imprimivel{
         try {
             BufferedWriter bufferEscrita = new BufferedWriter(new FileWriter(caminho));
             // Escrevendo o recibo da compra
-            bufferEscrita.write("Código da compra: " + Integer.toString(getRegistroCompra()) + "\n\n");
+            bufferEscrita.write("Código da compra: " + getRegistroCompra() + "\n\n");
             bufferEscrita.write("Quantidade de ingressos comprados: " + this.listaIngressos.size() + "\n");
             bufferEscrita.write("#############################\n");
             for (Ingresso i : listaIngressos) {
@@ -93,9 +81,9 @@ public class Compra implements Imprimivel{
     Cria um ingresso
      */
     public void criarIngresso(int assento, Sessao sessao, boolean ehInteiro) {
-        boolean condicao = true;
+        boolean condicao;
         condicao = verificarAssento(assento, sessao);
-        if (condicao == false) {
+        if (!condicao) {
             System.out.println("Esse assento já está ocupado.");
         }
         else {
@@ -164,7 +152,7 @@ public class Compra implements Imprimivel{
     public boolean verificarAssento(int assento, Sessao sessao) {
         boolean condicao = true;
         List<Boolean> lista = sessao.getListaAssentos();
-        if (lista.get(assento) == false) {
+        if (!lista.get(assento)) {
             condicao = false;
         }
         return condicao;

@@ -4,5 +4,5 @@ public interface Imprimivel {
     em um arquivo *.txt ou .CSV, não tenho certeza ainda*
      */
 
-    public void imprimir();
+    void imprimir();
 }

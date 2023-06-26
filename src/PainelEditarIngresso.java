@@ -9,7 +9,7 @@ public class PainelEditarIngresso extends JPanel{
     JCheckBox botaoMeia;
     JLabel informacoes;
 
-    PainelEditarIngresso(String filme, String sessao, int assento, PainelCompra painel) {
+    PainelEditarIngresso(String filme, int assento, PainelCompra painel) {
         this.setVisible(true);
         this.setPreferredSize(new Dimension(250, 20));
         this.setLayout(null);

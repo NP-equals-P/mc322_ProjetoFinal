@@ -4,12 +4,12 @@ public abstract class Funcionario {
     /*
     Superclasse dos tipos Vendedor e Gerente
      */
-    private Unidade unidade;
-    private String nome;
+    private final Unidade unidade;
+    private final String nome;
     private final String cpf;
     private double salario;
-    private String login;
-    private String senha;
+    private final String login;
+    private final String senha;
 
     public Funcionario(Unidade unidade, String nome, String cpf, double salario, String login, String senha) {
         this.unidade = unidade;

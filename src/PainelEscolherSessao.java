@@ -104,7 +104,7 @@ public class PainelEscolherSessao extends JPanel implements ActionListener{
             this.setVisible(false);
             janela.getPainelEscolherFilme().setVisible(true);
         }
-        else if (true) {
+        else {
             if (e.getSource() == botaoSessao1) {
                 janela.getPainelVendedor().setSessaoSelecionado(1);
             }

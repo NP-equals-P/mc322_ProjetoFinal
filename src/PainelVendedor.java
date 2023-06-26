@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,7 +22,6 @@ public class PainelVendedor extends JPanel implements ActionListener, atualizar{
     double totalIngressos = 0.0;
     double totalConsumiveis = 0.0;
     Integer[] quantidadesConsumiveis = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    Integer[] quantidadesIngressos = {0, 0, 0, 0, 0, 0};
 
     JButton botaoVoltar;
     JButton boatoCompra;
@@ -70,7 +70,7 @@ public class PainelVendedor extends JPanel implements ActionListener, atualizar{
         botaoFilme1.setFocusable(false);
         secaoCentral.add(botaoFilme1);
 
-        ImageIcon cartaz1 = new ImageIcon(getClass().getResource("posterFilmesAntigos/1titanic.png"));
+        ImageIcon cartaz1 = new ImageIcon(Objects.requireNonNull(getClass().getResource("posterFilmesAntigos/1titanic.png")));
         botaoFilme1.setIcon(cartaz1);
 
         botaoFilme2 = new JButton();
@@ -81,7 +81,7 @@ public class PainelVendedor extends JPanel implements ActionListener, atualizar{
         botaoFilme2.setFocusable(false);
         secaoCentral.add(botaoFilme2);
 
-        ImageIcon cartaz2 = new ImageIcon(getClass().getResource("posterFilmesAntigos/2bacurau.png"));
+        ImageIcon cartaz2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("posterFilmesAntigos/2bacurau.png")));
         botaoFilme2.setIcon(cartaz2);
 
         botaoFilme3 = new JButton();
@@ -92,7 +92,7 @@ public class PainelVendedor extends JPanel implements ActionListener, atualizar{
         botaoFilme3.setFocusable(false);
         secaoCentral.add(botaoFilme3);
 
-        ImageIcon cartaz3 = new ImageIcon(getClass().getResource("posterFilmesAntigos/3vingadores.png"));
+        ImageIcon cartaz3 = new ImageIcon(Objects.requireNonNull(getClass().getResource("posterFilmesAntigos/3vingadores.png")));
         botaoFilme3.setIcon(cartaz3);
 
         botaoFilme4 = new JButton();
@@ -103,7 +103,7 @@ public class PainelVendedor extends JPanel implements ActionListener, atualizar{
         botaoFilme4.setFocusable(false);
         secaoCentral.add(botaoFilme4);
 
-        ImageIcon cartaz4 = new ImageIcon(getClass().getResource("posterFilmesAntigos/42012.png"));
+        ImageIcon cartaz4 = new ImageIcon(Objects.requireNonNull(getClass().getResource("posterFilmesAntigos/42012.png")));
         botaoFilme4.setIcon(cartaz4);
 
         comissao = new JLabel("(R$" + 0 + ")");
@@ -159,14 +159,7 @@ public class PainelVendedor extends JPanel implements ActionListener, atualizar{
             comissao.setVisible(false);
             comissao.setVisible(true);
         }
-        else if (codigo == 1) {
-            
-        }
     }
-    
-    //public void setVendedorLogado(Vendedor vendedorLogado) {
-    //    this.vendedorLogado = vendedorLogado;
-    //}
 
     public Integer[] getQuantidadeConsumiveis() {
         return quantidadesConsumiveis;
@@ -204,9 +197,9 @@ public class PainelVendedor extends JPanel implements ActionListener, atualizar{
         if (listaAssentos.size() != 0) {
             Sessao sessao = vendedorLogado.getUnidade().getListaSessoes().get((sessaoSelecionada + 5*(filmeSelecionado-1))-1);
 
-            
-            for (int i = 0; i < listaAssentos.size(); i += 1) {
-                Ingresso novoIngresso = new Ingresso(listaAssentos.get(i), sessao, true);
+
+            for (Integer listaAssento : listaAssentos) {
+                Ingresso novoIngresso = new Ingresso(listaAssento, sessao, true);
                 novaCompra.adicionarIngresso(novoIngresso);
             }
             
@@ -216,7 +209,7 @@ public class PainelVendedor extends JPanel implements ActionListener, atualizar{
                 novaCompra.getListaIngressos().get(j).setPreco(novaCompra.getListaIngressos().get(j).getPreco()/2);
             }
             for (Integer assento : listaAssentos) {
-                    sessao.getListaAssentos().remove((int) assento - 1);
+                    sessao.getListaAssentos().remove(assento - 1);
                     sessao.getListaAssentos().add(assento - 1, false);
             }
             

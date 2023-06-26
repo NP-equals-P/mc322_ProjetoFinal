@@ -22,12 +22,10 @@ public class PainelCompra extends JPanel implements ActionListener, atualizar{
     JLabel totalCompra;
     JLabel totalIngressos;
     JLabel totalConsumiveis;
-    JTextArea areaTextoIngressos;
     JTextArea areaTextoConsumiveis;
     Double[] precosConsumiveis = {10.00, 15.20, 30.00, 49.99, 6.00, 3.00, 4.99, 9.00, 4.00, 50.00};
-    Double[] precosIngressos = {30.00, 40.00, 50.00};
     double precoBase = 1.0;
-    ArrayList<PainelEditarIngresso> listaBotoesAssentosSelecionados = new ArrayList<PainelEditarIngresso>();
+    ArrayList<PainelEditarIngresso> listaBotoesAssentosSelecionados = new ArrayList<>();
 
     PainelCompra(JanelaVendedor janela) {
         this.janela = janela;
@@ -149,7 +147,7 @@ public class PainelCompra extends JPanel implements ActionListener, atualizar{
             janela.getPainelVendedor().setVisible(true);
             janela.getPainelCategorias().secaoListarMovel.removeAll();
             janela.getPainelVendedor().zerarQuantidadeConsumiveis();
-            janela.getPainelEscolherAssentos().assentosSelecionados = new ArrayList<Integer>();
+            janela.getPainelEscolherAssentos().assentosSelecionados = new ArrayList<>();
             secaoListarIngressos.removeAll();
             this.atualizarPainel(1);
         }
@@ -173,8 +171,8 @@ public class PainelCompra extends JPanel implements ActionListener, atualizar{
             janela.getPainelCompra().atualizarPainel(0);
             janela.getPainelVendedor().setVisible(true);
             janela.getPainelVendedor().zerarQuantidadeConsumiveis();
-            janela.getPainelEscolherAssentos().assentosSelecionados = new ArrayList<Integer>();
-            listaBotoesAssentosSelecionados = new ArrayList<PainelEditarIngresso>();
+            janela.getPainelEscolherAssentos().assentosSelecionados = new ArrayList<>();
+            listaBotoesAssentosSelecionados = new ArrayList<>();
             secaoListarIngressos.removeAll();
             this.atualizarPainel(1);
 
@@ -190,10 +188,10 @@ public class PainelCompra extends JPanel implements ActionListener, atualizar{
                 janela.getPainelEscolherFilme().setVisible(true);
             }
             else {
-                listaBotoesAssentosSelecionados = new ArrayList<PainelEditarIngresso>();
+                listaBotoesAssentosSelecionados = new ArrayList<>();
                 janela.getPainelEscolherAssentos().botaoVoltar.setVisible(false);
                 janela.getPainelEscolherAssentos().atualizarPainel(0);
-                janela.getPainelEscolherAssentos().assentosSelecionados = new ArrayList<Integer>();
+                janela.getPainelEscolherAssentos().assentosSelecionados = new ArrayList<>();
                 secaoListarIngressos.removeAll();
                 this.setVisible(false);
                 janela.getPainelEscolherAssentos().setVisible(true);
@@ -202,18 +200,17 @@ public class PainelCompra extends JPanel implements ActionListener, atualizar{
         else {
             precoBase = 30.0;
             Sessao sessao = janela.getPainelVendedor().vendedorLogado.getUnidade().getListaSessoes().get(((janela.getPainelVendedor().sessaoSelecionada + 5*(janela.getPainelVendedor().filmeSelecionado - 1)))-1);
-            if (sessao.getSala().getEh3D() == true) {
+            if (sessao.getSala().getEh3D()) {
                 precoBase = (precoBase * 1.5);
             }
-            if (sessao.getSala().getEhVIP() == true) {
+            if (sessao.getSala().getEhVIP()) {
                 precoBase = (precoBase * 2);
             }
-            Double totalAux = 0.0;
-            for (int i = 0; i < listaBotoesAssentosSelecionados.size(); i += 1) {
-                if (listaBotoesAssentosSelecionados.get(i).botaoMeia.isSelected()) {
-                    totalAux += 0.5*(precoBase);
-                }
-                else {
+            double totalAux = 0.0;
+            for (PainelEditarIngresso listaBotoesAssentosSelecionado : listaBotoesAssentosSelecionados) {
+                if (listaBotoesAssentosSelecionado.botaoMeia.isSelected()) {
+                    totalAux += 0.5 * (precoBase);
+                } else {
                     totalAux += precoBase;
                 }
             }
@@ -288,7 +285,7 @@ public class PainelCompra extends JPanel implements ActionListener, atualizar{
         }
         else if (codigo == 2) {
             for (int i = 0; i < janela.getPainelEscolherAssentos().assentosSelecionados.size(); i += 1) {
-                PainelEditarIngresso aux = new PainelEditarIngresso(janela.getPainelVendedor().vendedorLogado.getUnidade().getListaSessoes().get((janela.getPainelVendedor().filmeSelecionado-1)*5).getFilme(), janela.getPainelVendedor().vendedorLogado.getUnidade().getListaSessoes().get(janela.getPainelVendedor().sessaoSelecionada).getHorario(), janela.getPainelEscolherAssentos().assentosSelecionados.get(i), this);
+                PainelEditarIngresso aux = new PainelEditarIngresso(janela.getPainelVendedor().vendedorLogado.getUnidade().getListaSessoes().get((janela.getPainelVendedor().filmeSelecionado-1)*5).getFilme(), janela.getPainelEscolherAssentos().assentosSelecionados.get(i), this);
                 secaoListarIngressos.add(aux);
                 listaBotoesAssentosSelecionados.add(aux);
             }
@@ -304,18 +301,17 @@ public class PainelCompra extends JPanel implements ActionListener, atualizar{
             precoBase = 30.0;
             Sessao sessao = janela.getPainelVendedor().vendedorLogado.getUnidade().getListaSessoes().get(((janela.getPainelVendedor().sessaoSelecionada + 5*(janela.getPainelVendedor().filmeSelecionado - 1)))-1);
             // janela.getPainelEscolherAssentos().assentosSelecionados = new ArrayList<Integer>();
-            if (sessao.getSala().getEh3D() == true) {
+            if (sessao.getSala().getEh3D()) {
                 precoBase = (precoBase * 1.5);
             }
-            if (sessao.getSala().getEhVIP() == true) {
+            if (sessao.getSala().getEhVIP()) {
                 precoBase = (precoBase * 2);
             }
-            Double totalAux = 0.0;
-            for (int i = 0; i < listaBotoesAssentosSelecionados.size(); i += 1) {
-                if (listaBotoesAssentosSelecionados.get(i).botaoMeia.isSelected()) {
-                    totalAux += 0.5*(precoBase);
-                }
-                else {
+            double totalAux = 0.0;
+            for (PainelEditarIngresso listaBotoesAssentosSelecionado : listaBotoesAssentosSelecionados) {
+                if (listaBotoesAssentosSelecionado.botaoMeia.isSelected()) {
+                    totalAux += 0.5 * (precoBase);
+                } else {
                     totalAux += precoBase;
                 }
             }

@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -57,7 +58,7 @@ public class PainelEscolherFilme extends JPanel implements ActionListener, atual
         botaoFilme1.setFocusable(false);
         secaoCentral.add(botaoFilme1);
 
-        ImageIcon cartaz1 = new ImageIcon(getClass().getResource("posterFilmesAntigos/1titanic.png"));
+        ImageIcon cartaz1 = new ImageIcon(Objects.requireNonNull(getClass().getResource("posterFilmesAntigos/1titanic.png")));
         botaoFilme1.setIcon(cartaz1);
 
         botaoFilme2 = new JButton();
@@ -68,7 +69,7 @@ public class PainelEscolherFilme extends JPanel implements ActionListener, atual
         botaoFilme2.setFocusable(false);
         secaoCentral.add(botaoFilme2);
 
-        ImageIcon cartaz2 = new ImageIcon(getClass().getResource("posterFilmesAntigos/2bacurau.png"));
+        ImageIcon cartaz2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("posterFilmesAntigos/2bacurau.png")));
         botaoFilme2.setIcon(cartaz2);
 
         botaoFilme3 = new JButton();
@@ -79,7 +80,7 @@ public class PainelEscolherFilme extends JPanel implements ActionListener, atual
         botaoFilme3.setFocusable(false);
         secaoCentral.add(botaoFilme3);
 
-        ImageIcon cartaz3 = new ImageIcon(getClass().getResource("posterFilmesAntigos/3vingadores.png"));
+        ImageIcon cartaz3 = new ImageIcon(Objects.requireNonNull(getClass().getResource("posterFilmesAntigos/3vingadores.png")));
         botaoFilme3.setIcon(cartaz3);
 
         botaoFilme4 = new JButton();
@@ -90,7 +91,7 @@ public class PainelEscolherFilme extends JPanel implements ActionListener, atual
         botaoFilme4.setFocusable(false);
         secaoCentral.add(botaoFilme4);
 
-        ImageIcon cartaz4 = new ImageIcon(getClass().getResource("posterFilmesAntigos/42012.png"));
+        ImageIcon cartaz4 = new ImageIcon(Objects.requireNonNull(getClass().getResource("posterFilmesAntigos/42012.png")));
         botaoFilme4.setIcon(cartaz4);
 
     }
