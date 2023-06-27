@@ -31,9 +31,11 @@ public class PainelVendedor extends JPanel implements ActionListener, atualizar{
     JButton botaoFilme4;
     JLabel comissao;
     JPanel secaoCentral;
+    Janela janelaLogin;
 
-    PainelVendedor(JanelaVendedor janela, Vendedor vendedor) {
+    PainelVendedor(Janela janelaLogin, JanelaVendedor janela, Vendedor vendedor) {
         this.janela = janela;
+        this.janelaLogin = janelaLogin;
         this.vendedorLogado = vendedor;
 
         this.setBackground(Color.blue);
@@ -134,8 +136,8 @@ public class PainelVendedor extends JPanel implements ActionListener, atualizar{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == botaoVoltar) {
             //this.setVendedorLogado(null);
-            this.setVisible(false);
-            janela.getPainelLogin().setVisible(true);
+            janelaLogin.getFrame().setVisible(true);
+            janela.dispose();
         }
         else if (e.getSource() == boatoCompra) {
             //janela.getPainelCompra().atualizarPainel(0);

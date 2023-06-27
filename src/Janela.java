@@ -8,10 +8,10 @@ public class Janela {
     public static final String GERENTE = "Gerente";
     public static final String INSERIR_FUNCIONARIO = "Inserir Funcionario";
     private final Entidade entidade;
+    private final JFrame frame = new JFrame();
 
     public Janela(Entidade entidade, String titulo) {
         this.entidade = entidade;
-        JFrame frame = new JFrame();
         frame.setTitle(titulo);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(600, 600);
@@ -42,5 +42,8 @@ public class Janela {
 
     public JPanel getCards() {
         return cards;
+    }
+    public JFrame getFrame() {
+        return frame;
     }
 }

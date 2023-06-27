@@ -6,18 +6,18 @@ import java.io.IOException;
 public class Ingresso {
     private final int id;
     private final int assento;
-    private Sessao sessao;
+    private final Sessao sessao;
     private double preco;
-    private boolean ehInteiro;
     private static int contador = 0;
+    private boolean ehInteiro;
 
     public Ingresso(int assento, Sessao sessao, boolean ehInteiro) {
             this.assento = assento;
             this.sessao = sessao;
-            this.ehInteiro = ehInteiro;
-            this.preco = calcPreco(sessao, ehInteiro);
+        this.preco = calcPreco(sessao, ehInteiro);
             this.id = contador;
             contador++;
+            this.ehInteiro = ehInteiro;
     }
     
     public int getId() {
@@ -40,7 +40,7 @@ public class Ingresso {
     Calcula o preço do ingresso, levando em conta o preço de uma sala e se é ou nao um ingresso inteiro.
      */
     public double calcPreco(Sessao sessao, boolean ehInteiro) {
-        double valor = 0;
+        double valor;
         Sala sala = sessao.getSala();
         valor = sala.getPreco();
         if (!ehInteiro) {
@@ -51,10 +51,6 @@ public class Ingresso {
 
     public void setPreco(double preco) {
         this.preco = preco;
-    }
-
-    public void setSessao(Sessao sessao) {
-        this.sessao = sessao;
     }
 
     public void setEhInteiro(boolean ehInteiro) {
@@ -78,11 +74,16 @@ public class Ingresso {
             bufferEscrita.write("Preço: " + getPreco() + "\n");
             bufferEscrita.write("Horário da sessão: " + sessao.getHorario() + "\n");
             bufferEscrita.write("Sala: " + sessao.getSala().getId() + "\n");
+            bufferEscrita.write("Tipo: " + (isEhInteiro() ? "Inteira" : "Meia") + "\n");
             bufferEscrita.write("#############################\n\n");
             bufferEscrita.write("Bom filme!!");
             bufferEscrita.close();
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
+    }
+
+    public boolean isEhInteiro() {
+        return ehInteiro;
     }
 }

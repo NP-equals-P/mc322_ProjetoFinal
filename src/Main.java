@@ -9,6 +9,7 @@ public class Main {
         entity.imprimir();
         Gerente admin = new Gerente(u1, "admin", "admin", 2500, "admin", "admin");
         u1.getListaFuncionarios().add(admin);
+        u1.inicializarExemplo();
         entity.getListaUnidades().add(u1);
         admin.inicializarConsumiveis();
 

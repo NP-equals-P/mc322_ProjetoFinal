@@ -13,7 +13,7 @@ public class JanelaVendedor extends JFrame{
     PainelEscolherAssentos painelEscolherAssentos;
     Unidade unidade;
 
-    JanelaVendedor(Unidade unidade, Vendedor vendedor) {
+    JanelaVendedor(Janela janelaLogin, Unidade unidade, Vendedor vendedor) {
         this.setTitle("Janela");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(810, 460);
@@ -21,7 +21,7 @@ public class JanelaVendedor extends JFrame{
         this.unidade = unidade;
         
         painelLogin = new PainelLogin(this, unidade);
-        painelVendedor = new PainelVendedor(this, vendedor);
+        painelVendedor = new PainelVendedor(janelaLogin, this, vendedor);
         painelCompra = new PainelCompra(this);
         painelCategorias = new PainelCategorias(this);
         painelConsumiveis = new PainelConsumiveis(this);
@@ -48,11 +48,6 @@ public class JanelaVendedor extends JFrame{
     public PainelVendedor getPainelVendedor() {
         return painelVendedor;
     }
-
-    public PainelLogin getPainelLogin() {
-        return painelLogin;
-    }
-
     public PainelCompra getPainelCompra() {
         return painelCompra;
     }

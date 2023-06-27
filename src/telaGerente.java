@@ -124,7 +124,7 @@ public class telaGerente {
                 Sessao selecionada = sessoesUnidade.get(listaSessoes.getSelectedIndex());
                 try {
                     String filme = JOptionPane.showInputDialog("Digite o nome do Filme:");
-                    JFileChooser escolher = new JFileChooser("fileIn/");
+                    JFileChooser escolher = new JFileChooser("src/posterFilmesAntigos/");
                     escolher.setDialogTitle("Escolher cartaz");
                     escolher.addChoosableFileFilter(new FileNameExtensionFilter("Imagens",
                                                                       "jpg", "jpeg", "png", "gif"));

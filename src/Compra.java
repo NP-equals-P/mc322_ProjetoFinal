@@ -78,21 +78,6 @@ public class Compra implements Imprimivel{
     }
 
     /*
-    Cria um ingresso
-     */
-    public void criarIngresso(int assento, Sessao sessao, boolean ehInteiro) {
-        boolean condicao;
-        condicao = verificarAssento(assento, sessao);
-        if (!condicao) {
-            System.out.println("Esse assento já está ocupado.");
-        }
-        else {
-            Ingresso ing = new Ingresso(assento, sessao, ehInteiro);
-            adicionarIngresso(ing);
-        }
-    }
-
-    /*
     Adiciona um ingresso, já criado, na lista de ingressos da compra
      */
     public void adicionarIngresso(Ingresso ingresso) {
@@ -112,50 +97,6 @@ public class Compra implements Imprimivel{
      */
     public void adicionarConsumivel(Consumivel consumivel) {
         listaConsumo.add(consumivel);
-    }
-
-    /*
-    Remove um ingresso da lista de ingressos com base no seu id
-     */
-    public boolean removerIngresso(int id) {
-        Iterator<Ingresso> i = listaIngressos.iterator();
-        while(i.hasNext()) {
-            Ingresso ing = i.next();
-            if (ing.getId() == id) {
-                i.remove();
-                return true;
-            }
-        }
-        return false; // nao encontrou alguem com o id dado para ser retirado
-    }
-
-    /*
-    Remove um consumivel da lista de consumiveis com base no seu nome(como nao importa qual
-    consumivel voce quer tirar dede que ele seja do mesmo tipo, nao precisa de um id, apenas do nome)
-     */
-    public boolean removerConsumivel(String nome) {
-        Iterator<Consumivel> i = listaConsumo.iterator();
-        while(i.hasNext()) {
-            Consumivel consumivel = i.next();
-            if (consumivel.getNome().equals(nome)) {
-                i.remove();
-                return true;
-            }
-        }
-        return false; // nao encontrou alguem com o nome dado para ser retirado
-    }
-
-    /*
-    Recebe um assento e uma sessao e verifica se esse assento fornecido desta dada sessao
-    esta livre ou nao, sendo true um assento livre e false um ja ocupado.
-     */
-    public boolean verificarAssento(int assento, Sessao sessao) {
-        boolean condicao = true;
-        List<Boolean> lista = sessao.getListaAssentos();
-        if (!lista.get(assento)) {
-            condicao = false;
-        }
-        return condicao;
     }
 
 }
