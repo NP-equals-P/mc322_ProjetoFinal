@@ -13,6 +13,7 @@ public class Main {
         entity.getListaUnidades().add(u1);
         admin.inicializarConsumiveis();
 
+
         new Janela(entity,"Teste");
     }
 }

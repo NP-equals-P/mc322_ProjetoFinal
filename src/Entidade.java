@@ -53,6 +53,7 @@ public class Entidade {
     por todas as unidades.
      */
     public void calcValorArrecadado() {
+        this.valorArrecadado = 0;
         for (Unidade u : listaUnidades) {
             u.calcSaldo();
             valorArrecadado += u.getSaldo();

@@ -81,6 +81,7 @@ public class Unidade {
     e os salarios dos funcionarios um saldo negativo.
      */
     public void calcSaldo() {
+        saldo=0;
         for (Compra c : listaCompras) {
             saldo += c.getTotal();
         }

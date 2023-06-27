@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="ba963704-cecc-4c00-89e4-55519f809c06" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Compra.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fileOut/Compra2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../fileOut/Compra2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fileOut/Compra3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../fileOut/Compra3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Entidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entidade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ingresso.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ingresso.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PainelConsumiveis.java" beforeDir="false" afterPath="$PROJECT_DIR$/PainelConsumiveis.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Unidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/Unidade.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -1,6 +1,4 @@
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -39,6 +37,8 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
         secaoSuperior.setBounds(0, 0, 800, 50);
         this.add(secaoSuperior);
 
+
+
         botaoVoltar = new JButton();
         botaoVoltar.setBounds(10, 10, 100, 30);
         botaoVoltar.addActionListener(this);
@@ -55,15 +55,16 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
         this.add(secaoPipoca);
 
         botaoPipocaPequena = new JButton();
-        botaoPipocaPequena.setText("Pipoca pequena");
+        botaoPipocaPequena.setText("Pipoca pequena R$10");
         botaoPipocaPequena.setFocusable(false);
         botaoPipocaPequena.setPreferredSize(new Dimension(150, 150));
+        botaoPipocaPequena.setFont(new Font("Calibri", Font.PLAIN, 10));
         botaoPipocaPequena.setVisible(true);
         botaoPipocaPequena.addActionListener(this);
         secaoPipoca.add(botaoPipocaPequena);
 
         botaoPipocaMedia = new JButton();
-        botaoPipocaMedia.setText("Pipoca média");
+        botaoPipocaMedia.setText("Pipoca média R$15.20");
         botaoPipocaMedia.setFocusable(false);
         botaoPipocaMedia.setPreferredSize(new Dimension(150, 150));
         botaoPipocaMedia.setVisible(true);
@@ -71,7 +72,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
         secaoPipoca.add(botaoPipocaMedia);
 
         botaoPipocaGrande = new JButton();
-        botaoPipocaGrande.setText("Pipoca grande");
+        botaoPipocaGrande.setText("Pipoca grande R$30");
         botaoPipocaGrande.setFocusable(false);
         botaoPipocaGrande.setPreferredSize(new Dimension(150, 150));
         botaoPipocaGrande.setVisible(true);
@@ -79,7 +80,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
         secaoPipoca.add(botaoPipocaGrande);
 
         botaoPipocaBalde = new JButton();
-        botaoPipocaBalde.setText("Pipoca balde");
+        botaoPipocaBalde.setText("Pipoca balde R$49.99");
         botaoPipocaBalde.setFocusable(false);
         botaoPipocaBalde.setPreferredSize(new Dimension(150, 150));
         botaoPipocaBalde.setVisible(true);
@@ -94,7 +95,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
         this.add(secaoBebida);
 
         botaoRefrigerante = new JButton();
-        botaoRefrigerante.setText("Refrigerante");
+        botaoRefrigerante.setText("Refrigerante R$6");
         botaoRefrigerante.setFocusable(false);
         botaoRefrigerante.setPreferredSize(new Dimension(150, 150));
         botaoRefrigerante.setVisible(true);
@@ -102,7 +103,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
         secaoBebida.add(botaoRefrigerante);
 
         botaoAgua = new JButton();
-        botaoAgua.setText("Água");
+        botaoAgua.setText("Água R$3");
         botaoAgua.setFocusable(false);
         botaoAgua.setPreferredSize(new Dimension(150, 150));
         botaoAgua.setVisible(true);
@@ -110,7 +111,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
         secaoBebida.add(botaoAgua);
 
         botaoSuco = new JButton();
-        botaoSuco.setText("Suco");
+        botaoSuco.setText("Suco R$4.99");
         botaoSuco.setFocusable(false);
         botaoSuco.setPreferredSize(new Dimension(150, 150));
         botaoSuco.setVisible(true);
@@ -125,7 +126,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
         this.add(secaoOutro);
 
         botaoChocolate = new JButton();
-        botaoChocolate.setText("Chocolate");
+        botaoChocolate.setText("Chocolate R$9");
         botaoChocolate.setFocusable(false);
         botaoChocolate.setPreferredSize(new Dimension(150, 150));
         botaoChocolate.setVisible(true);
@@ -133,7 +134,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
         secaoOutro.add(botaoChocolate);
 
         botaoBala = new JButton();
-        botaoBala.setText("Bala");
+        botaoBala.setText("Bala R$4");
         botaoBala.setFocusable(false);
         botaoBala.setPreferredSize(new Dimension(150, 150));
         botaoBala.setVisible(true);
@@ -141,7 +142,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
         secaoOutro.add(botaoBala);
 
         botaoAmendoim = new JButton();
-        botaoAmendoim.setText("Amendoim");
+        botaoAmendoim.setText("Amendoim R$50");
         botaoAmendoim.setFocusable(false);
         botaoAmendoim.setPreferredSize(new Dimension(150, 150));
         botaoAmendoim.setVisible(true);
@@ -179,7 +180,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
     
     static void adicionarConsumivel(String nome, JanelaVendedor janela) {
         switch (nome) {
-            case "Pipoca pequena": {
+            case "Pipoca pequena R$10": {
                 PainelComplexo aux = new PainelComplexo(0, janela, "Pipoca pequena");
                 if (janela.getPainelVendedor().getQuantidadeConsumiveis()[0] == 0) {
                     janela.getPainelCategorias().secaoListarMovel.add(aux);
@@ -188,7 +189,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
                 }
                 break;
             }
-            case "Pipoca média": {
+            case "Pipoca média R$15.20": {
                 PainelComplexo aux = new PainelComplexo(1, janela, "Pipoca média");
                 if (janela.getPainelVendedor().getQuantidadeConsumiveis()[1] == 0) {
                     janela.getPainelCategorias().secaoListarMovel.add(aux);
@@ -197,7 +198,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
                 }
                 break;
             }
-            case "Pipoca grande": {
+            case "Pipoca grande R$30": {
                 PainelComplexo aux = new PainelComplexo(2, janela, "Pipoca grande");
                 if (janela.getPainelVendedor().getQuantidadeConsumiveis()[2] == 0) {
                     janela.getPainelCategorias().secaoListarMovel.add(aux);
@@ -206,7 +207,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
                 }
                 break;
             }
-            case "Pipoca balde": {
+            case "Pipoca balde R$49.99": {
                 PainelComplexo aux = new PainelComplexo(3, janela, "Pipoca balde");
                 if (janela.getPainelVendedor().getQuantidadeConsumiveis()[3] == 0) {
                     janela.getPainelCategorias().secaoListarMovel.add(aux);
@@ -215,7 +216,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
                 }
                 break;
             }
-            case "Refrigerante": {
+            case "Refrigerante R$6": {
                 PainelComplexo aux = new PainelComplexo(4, janela, "Refrigerante");
                 if (janela.getPainelVendedor().getQuantidadeConsumiveis()[4] == 0) {
                     janela.getPainelCategorias().secaoListarMovel.add(aux);
@@ -224,7 +225,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
                 }
                 break;
             }
-            case "Água": {
+            case "Água R$3": {
                 PainelComplexo aux = new PainelComplexo(5, janela, "Água");
                 if (janela.getPainelVendedor().getQuantidadeConsumiveis()[5] == 0) {
                     janela.getPainelCategorias().secaoListarMovel.add(aux);
@@ -233,7 +234,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
                 }
                 break;
             }
-            case "Suco": {
+            case "Suco R$4.99": {
                 PainelComplexo aux = new PainelComplexo(6, janela, "Suco");
                 if (janela.getPainelVendedor().getQuantidadeConsumiveis()[6] == 0) {
                     janela.getPainelCategorias().secaoListarMovel.add(aux);
@@ -242,7 +243,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
                 }
                 break;
             }
-            case "Chocolate": {
+            case "Chocolate R$9": {
                 PainelComplexo aux = new PainelComplexo(7, janela, "Chocolate");
                 if (janela.getPainelVendedor().getQuantidadeConsumiveis()[7] == 0) {
                     janela.getPainelCategorias().secaoListarMovel.add(aux);
@@ -251,7 +252,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
                 }
                 break;
             }
-            case "Bala": {
+            case "Bala R$4": {
                 PainelComplexo aux = new PainelComplexo(8, janela, "Bala");
                 if (janela.getPainelVendedor().getQuantidadeConsumiveis()[8] == 0) {
                     janela.getPainelCategorias().secaoListarMovel.add(aux);
@@ -260,7 +261,7 @@ public class PainelConsumiveis extends JPanel implements ActionListener{
                 }
                 break;
             }
-            case "Amendoim": {
+            case "Amendoim R$50": {
                 PainelComplexo aux = new PainelComplexo(9, janela, "Amendoim");
                 if (janela.getPainelVendedor().getQuantidadeConsumiveis()[9] == 0) {
                     janela.getPainelCategorias().secaoListarMovel.add(aux);
